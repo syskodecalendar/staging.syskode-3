@@ -1,0 +1,30 @@
+
+.home-services{max-width:1440px;margin:0 auto;padding:96px 32px;scroll-margin-top:96px;color:#0B1035}
+.home-services-heading{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:40px}
+.home-services-eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#0284C7;margin-bottom:12px}
+.home-services-heading h2{margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-.02em;font-weight:600}
+.home-services-heading p{margin:0;font-size:16px;line-height:1.65;color:#5B6478;max-width:520px}
+.home-services-controls{padding-bottom:20px;margin-bottom:36px;border-bottom:1px solid #E0E4EC}
+.home-services-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.home-services-filters button,.home-services-footer button,.home-services-empty button{border:1px solid #D6DBE5;border-radius:999px;padding:10px 17px;font-size:14px;font-weight:500;cursor:pointer;transition:box-shadow .2s ease}
+.home-services button:hover{box-shadow:0 0 0 2px rgba(5,163,227,.15)}
+.home-services-search{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.home-services-search input{border:1px solid #D6DBE5;border-radius:999px;padding:11px 16px;font-size:14px;color:#0B1035;background:#fff;width:260px;max-width:100%}
+.home-services-search span{font-size:14px;color:#7A8399}
+.home-services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px}
+.home-service-card{display:flex;flex-direction:column;gap:12px;min-width:0;color:#0B1035}
+.home-service-image{aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#F4F7FA}
+.home-service-image img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .65s ease}
+.home-service-card:hover img,.home-service-card:focus-visible img{transform:scale(1.04)}
+.home-service-meta{display:flex;justify-content:space-between;gap:12px;color:#7A8399;font-size:13px;line-height:1.5}
+.home-service-meta span:last-child{text-align:right}
+.home-service-card h3{margin:0;font-size:20px;font-weight:600;line-height:1.3;letter-spacing:-.015em}
+.home-service-card p{margin:0;font-size:15px;line-height:1.6;color:#5B6478}
+.home-service-more{font-size:14px;color:#0284C7;font-weight:600;margin-top:auto;padding-top:4px}
+.home-services-footer{text-align:center;margin-top:48px}.home-services-footer button{background:#fff;color:#0B1035;padding:13px 24px}
+.home-services-empty{text-align:center;padding:40px 20px;background:#F4F7FA;border-radius:12px}.home-services-empty h3{margin-top:0}.home-services-empty p{color:#5B6478}.home-services-empty button{background:#0B1035;color:#fff}
+.home-services :focus-visible{outline:2px solid #0284C7;outline-offset:4px}
+@media(max-width:1100px){.home-services-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:800px){.home-services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-services-heading{grid-template-columns:1fr;gap:20px}.home-service-meta{flex-direction:column;gap:2px}.home-service-meta span:last-child{text-align:left}}
+@media(max-width:500px){.home-services{padding:64px 20px}.home-services-grid{grid-template-columns:1fr;gap:32px}.home-services-heading h2 br{display:none}}
+@media(prefers-reduced-motion:reduce){.home-service-image img,.home-services button{transition:none}}

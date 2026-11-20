@@ -1,0 +1,361 @@
+{
+  "v": 1,
+  "mode": "omelette",
+  "root": "project/",
+  "title": "Syskode Website Redesign",
+  "entry": "Portfolio.dc.html",
+  "pages": [
+    {
+      "path": "Portfolio.dc.html",
+      "title": "Portfolio",
+      "kind": "page"
+    },
+    {
+      "path": "Syskode Website.dc.html",
+      "title": "Syskode Website",
+      "kind": "page"
+    },
+    {
+      "path": "Products.dc.html",
+      "title": "Products",
+      "kind": "page"
+    },
+    {
+      "path": "Careers.dc.html",
+      "title": "Careers",
+      "kind": "page"
+    },
+    {
+      "path": "Partners.dc.html",
+      "title": "Partners",
+      "kind": "page"
+    },
+    {
+      "path": "Syskode Website v1 (backup).dc.html",
+      "title": "Syskode Website v1 (backup)",
+      "kind": "page"
+    },
+    {
+      "path": "Privacy.dc.html",
+      "title": "Privacy Policy",
+      "kind": "page"
+    },
+    {
+      "path": "Terms.dc.html",
+      "title": "Terms of Use",
+      "kind": "page"
+    },
+    {
+      "path": "Cookies.dc.html",
+      "title": "Cookie Policy",
+      "kind": "page"
+    },
+    {
+      "path": "Sitemap.dc.html",
+      "title": "Sitemap",
+      "kind": "page"
+    },
+    {
+      "path": "Case Studies.dc.html",
+      "title": "Case Studies",
+      "kind": "page"
+    },
+    {
+      "path": "Client Stories.dc.html",
+      "title": "Client Stories",
+      "kind": "page"
+    },
+    {
+      "path": "Product Demos.dc.html",
+      "title": "Product Demos",
+      "kind": "page"
+    },
+    {
+      "path": "Reseller Partner.dc.html",
+      "title": "Reseller Partner",
+      "kind": "page"
+    },
+    {
+      "path": "Implementation Partner.dc.html",
+      "title": "Implementation Partner",
+      "kind": "page"
+    },
+    {
+      "path": "Technology Partner.dc.html",
+      "title": "Technology Partner",
+      "kind": "page"
+    },
+    {
+      "path": "Referral Partner.dc.html",
+      "title": "Referral Partner",
+      "kind": "page"
+    },
+    {
+      "path": "Partner Resources.dc.html",
+      "title": "Partner Resources",
+      "kind": "page"
+    },
+    {
+      "path": "Life at Syskode.dc.html",
+      "title": "Life at Syskode",
+      "kind": "page"
+    },
+    {
+      "path": "Internships.dc.html",
+      "title": "Internships",
+      "kind": "page"
+    },
+    {
+      "path": "service-custom-software.dc.html",
+      "title": "Custom software",
+      "kind": "page"
+    },
+    {
+      "path": "service-web-platforms.dc.html",
+      "title": "Web platforms",
+      "kind": "page"
+    },
+    {
+      "path": "service-mobile-apps.dc.html",
+      "title": "Mobile apps",
+      "kind": "page"
+    },
+    {
+      "path": "service-e-commerce.dc.html",
+      "title": "E-commerce",
+      "kind": "page"
+    },
+    {
+      "path": "service-api-integrations.dc.html",
+      "title": "API & integrations",
+      "kind": "page"
+    },
+    {
+      "path": "service-blockchain-web3.dc.html",
+      "title": "Blockchain & Web3",
+      "kind": "page"
+    },
+    {
+      "path": "service-erp-implementation.dc.html",
+      "title": "ERP implementation",
+      "kind": "page"
+    },
+    {
+      "path": "service-zoho-consulting.dc.html",
+      "title": "Zoho consulting",
+      "kind": "page"
+    },
+    {
+      "path": "service-data-bi.dc.html",
+      "title": "Data & BI",
+      "kind": "page"
+    },
+    {
+      "path": "service-cloud-devops.dc.html",
+      "title": "Cloud & DevOps",
+      "kind": "page"
+    },
+    {
+      "path": "service-cybersecurity.dc.html",
+      "title": "Cybersecurity",
+      "kind": "page"
+    },
+    {
+      "path": "service-tech-consulting.dc.html",
+      "title": "Tech consulting",
+      "kind": "page"
+    },
+    {
+      "path": "service-vr-training-simulations.dc.html",
+      "title": "VR training simulations",
+      "kind": "page"
+    },
+    {
+      "path": "service-digital-twins.dc.html",
+      "title": "Digital twins",
+      "kind": "page"
+    },
+    {
+      "path": "service-interactive-3d-masterplans.dc.html",
+      "title": "Interactive 3D masterplans",
+      "kind": "page"
+    },
+    {
+      "path": "service-virtual-property-tours.dc.html",
+      "title": "Virtual property tours",
+      "kind": "page"
+    },
+    {
+      "path": "service-ar-industrial-solutions.dc.html",
+      "title": "AR industrial solutions",
+      "kind": "page"
+    },
+    {
+      "path": "service-metaverse-experiences.dc.html",
+      "title": "Metaverse experiences",
+      "kind": "page"
+    },
+    {
+      "path": "service-brand-identity.dc.html",
+      "title": "Brand identity",
+      "kind": "page"
+    },
+    {
+      "path": "service-motion-graphics.dc.html",
+      "title": "Motion graphics",
+      "kind": "page"
+    },
+    {
+      "path": "service-animated-explainers.dc.html",
+      "title": "Animated explainers",
+      "kind": "page"
+    },
+    {
+      "path": "service-digital-marketing.dc.html",
+      "title": "Digital marketing",
+      "kind": "page"
+    },
+    {
+      "path": "service-social-media.dc.html",
+      "title": "Social media",
+      "kind": "page"
+    },
+    {
+      "path": "service-growth-strategy.dc.html",
+      "title": "Growth strategy",
+      "kind": "page"
+    },
+    {
+      "path": "industry-airports-aviation.dc.html",
+      "title": "Airports & aviation",
+      "kind": "page"
+    },
+    {
+      "path": "industry-logistics-supply-chain.dc.html",
+      "title": "Logistics & supply chain",
+      "kind": "page"
+    },
+    {
+      "path": "industry-government-smart-city.dc.html",
+      "title": "Government & smart city",
+      "kind": "page"
+    },
+    {
+      "path": "industry-energy-utilities.dc.html",
+      "title": "Energy & utilities",
+      "kind": "page"
+    },
+    {
+      "path": "industry-manufacturing.dc.html",
+      "title": "Manufacturing",
+      "kind": "page"
+    },
+    {
+      "path": "industry-construction.dc.html",
+      "title": "Construction",
+      "kind": "page"
+    },
+    {
+      "path": "industry-real-estate.dc.html",
+      "title": "Real estate",
+      "kind": "page"
+    },
+    {
+      "path": "industry-oil-gas-services.dc.html",
+      "title": "Oil & gas services",
+      "kind": "page"
+    },
+    {
+      "path": "industry-sports-technology.dc.html",
+      "title": "Sports technology",
+      "kind": "page"
+    },
+    {
+      "path": "industry-hospitality-tourism.dc.html",
+      "title": "Hospitality & tourism",
+      "kind": "page"
+    },
+    {
+      "path": "industry-retail-e-commerce.dc.html",
+      "title": "Retail & e-commerce",
+      "kind": "page"
+    },
+    {
+      "path": "industry-events-exhibitions.dc.html",
+      "title": "Events & exhibitions",
+      "kind": "page"
+    },
+    {
+      "path": "industry-banking-fintech.dc.html",
+      "title": "Banking & fintech",
+      "kind": "page"
+    },
+    {
+      "path": "industry-healthcare.dc.html",
+      "title": "Healthcare",
+      "kind": "page"
+    },
+    {
+      "path": "industry-education.dc.html",
+      "title": "Education",
+      "kind": "page"
+    },
+    {
+      "path": "industry-professional-services.dc.html",
+      "title": "Professional services",
+      "kind": "page"
+    }
+  ],
+  "migratorVersion": "artifact-migrator (claude-design-backend ed667f7ac9c1)",
+  "createdAt": "2026-11-15T08:56:31.354Z",
+  "source": {
+    "v": 1,
+    "app": "claude-design",
+    "url": "https://claude.ai/design/p/8572d849-3b64-4dbd-8562-8e5dffb4b19d",
+    "projectId": "8572d849-3b64-4dbd-8562-8e5dffb4b19d",
+    "exportedAt": "2026-11-15T08:56:31.354Z"
+  },
+  "report": {
+    "itemsVersion": 2,
+    "pages": {
+      "total": 6,
+      "ok": 0,
+      "partial": 6,
+      "notMigrated": 0
+    },
+    "items": [
+      {
+        "kind": "external_blocked",
+        "path": "Careers.dc.html",
+        "text": "https://images.unsplash.com/photo-1758691737487-29b4fae83e95?auto=format&fit=crop&w=1800&q=80\nhttps://images.unsplash.com/photo-1758691737138-7b9b1884b1db?auto=format&fit=crop&w=1200&q=80\nhttps://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?auto=format&fit=crop&w=1200&q=80\nhttps://images.unsplash.com/photo-1758523670487-fe71f10c1080?auto=format&fit=crop&w=1200&q=80\nhttps://images.unsplash.com/photo-1758691737584-a8f17fb34475?auto=format&fit=crop&w=1200&q=80\nand 2 more addresses"
+      },
+      {
+        "kind": "external_blocked",
+        "path": "Partners.dc.html",
+        "text": "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1619941400844-ec5ef7495cb8?auto=format&fit=crop&w=2000&q=80\nhttps://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w"
+      },
+      {
+        "kind": "external_blocked",
+        "path": "Portfolio.dc.html",
+        "text": "https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w"
+      },
+      {
+        "kind": "external_blocked",
+        "path": "Products.dc.html",
+        "text": "https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w"
+      },
+      {
+        "kind": "external_blocked",
+        "path": "Syskode Website v1 (backup).dc.html",
+        "text": "https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1619941400844-ec5ef7495cb8?auto=format&fit=crop&w=2000&q=80\nhttps://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w"
+      },
+      {
+        "kind": "external_blocked",
+        "path": "Syskode Website.dc.html",
+        "text": "https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w"
+      }
+    ],
+    "truncated": 0,
+    "truncatedLeftOut": 0
+  }
+}

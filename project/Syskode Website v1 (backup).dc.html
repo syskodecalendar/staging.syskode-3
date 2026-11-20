@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Syskode Technologies — Enterprise AI, Automation & Immersive Tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#FFFFFF;color:#0B1035;font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#0284C7}
+input,select,textarea,button{font-family:inherit}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#FFFFFF;color:#0B1035">
+
+<!-- Nav + mega menu -->
+<header onMouseLeave="{{ closeMenu }}" style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,16,53,0.08)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:40px;min-height:80px">
+    <a href="#top" style="display:flex;align-items:center"><img src="assets/syskode-logo.png" alt="Syskode" style="height:46px;width:auto;margin:-4px -18px -10px -20px;display:block"></img></a>
+    <nav style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="8">
+        <button onMouseEnter="{{ n.onEnter }}" onClick="{{ n.onEnter }}" style="background:{{ n.bg }};color:{{ n.fg }};border:0;padding:10px 12px;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;white-space:nowrap">{{ n.label }}</button>
+      </sc-for>
+    </nav>
+    <a href="#contact" style="font-size:14px;font-weight:600;padding:12px 22px;background:#0284C7;color:#FFFFFF;border-radius:999px;white-space:nowrap">Contact us</a>
+  </div>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;right:0;top:100%;background:#FFFFFF;border-bottom:1px solid rgba(11,16,53,0.1);box-shadow:0 30px 60px rgba(11,16,53,0.12)">
+      <div style="max-width:1440px;margin:0 auto;padding:36px 32px 40px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:48px">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px;gap:16px;flex-wrap:wrap">
+            <div style="font-size:30px;font-weight:600;letter-spacing:-0.02em">{{ active.title }}</div>
+            <div style="font-size:14px;color:#5B6478;max-width:440px">{{ active.sub }}</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px">
+            <sc-for list="{{ active.cols }}" as="col" hint-placeholder-count="4">
+              <div>
+                <div style="font-weight:600;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#0284C7;padding-bottom:12px;margin-bottom:8px;border-bottom:1px solid rgba(11,16,53,0.08)">{{ col.title }}</div>
+                <div style="display:flex;flex-direction:column">
+                  <sc-for list="{{ col.items }}" as="it" hint-placeholder-count="5">
+                    <a href="#" style="padding:7px 0;font-size:14px;color:#2A3150;display:block">{{ it }}</a>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <img src="{{ active.img }}" alt="" style="width:100%;height:220px;object-fit:cover;border-radius:12px;display:block"></img>
+          <div style="font-size:18px;font-weight:600;letter-spacing:-0.01em">{{ active.featureTitle }}</div>
+          <div style="font-size:14px;color:#5B6478;line-height:1.5">{{ active.featureText }}</div>
+          <a href="#" style="font-size:14px;color:#0284C7;font-weight:600">Explore →</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</header>
+
+<!-- Hero slideshow -->
+<section id="top" data-screen-label="01 Hero" style="position:relative;height:78vh;min-height:560px;max-height:760px;overflow:hidden;background:#0B1035;color:#FFFFFF">
+  <sc-for list="{{ heroSlides }}" as="h" hint-placeholder-count="1">
+    <div style="position:absolute;inset:0;opacity:{{ h.opacity }};transition:opacity 1.2s ease">
+      <img src="{{ h.img }}" alt="{{ h.label }}" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale({{ h.scale }});transition:transform 7s ease-out"></img>
+    </div>
+  </sc-for>
+  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(6,10,45,0.78) 0%,rgba(6,10,45,0.35) 55%,rgba(6,10,45,0.1) 100%)"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(6,10,45,0) 60%,rgba(6,10,45,0.7) 100%)"></div>
+
+  <div style="position:relative;height:100%;max-width:1440px;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;justify-content:center">
+    <div style="display:grid;max-width:760px">
+      <sc-for list="{{ heroSlides }}" as="h" hint-placeholder-count="1">
+        <div style="grid-area:1/1;opacity:{{ h.opacity }};transform:translateY({{ h.shift }});transition:opacity 0.8s ease,transform 0.8s ease;pointer-events:{{ h.pe }};display:flex;flex-direction:column;gap:18px">
+          <div style="font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#05A3E3">{{ h.label }}</div>
+          <h1 style="margin:0;font-size:clamp(36px,4.6vw,60px);line-height:1.08;letter-spacing:-0.025em;font-weight:600;text-wrap:balance">{{ h.title }}</h1>
+          <p style="margin:0;font-size:17px;line-height:1.55;color:#E3E8F2;max-width:500px">{{ h.sub }}</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+            <a href="{{ h.href }}" style="font-size:15px;font-weight:600;padding:13px 22px;background:#0284C7;color:#FFFFFF;border-radius:999px">{{ h.cta }}</a>
+            <a href="#contact" style="font-size:15px;font-weight:500;padding:13px 22px;border:1px solid rgba(255,255,255,0.5);border-radius:999px;color:#FFFFFF">Talk to an expert</a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0">
+    <div style="max-width:1440px;margin:0 auto;padding:0 32px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px">
+      <sc-for list="{{ heroSlides }}" as="h" hint-placeholder-count="6">
+        <button onClick="{{ h.go }}" style="background:transparent;border:0;padding:0;cursor:pointer;text-align:left;color:#FFFFFF;display:flex;flex-direction:column;gap:10px">
+          <div style="height:2px;background:rgba(255,255,255,0.25);border-radius:2px;overflow:hidden"><div style="height:100%;background:#05A3E3;width:{{ h.bar }};transition:{{ h.barT }}"></div></div>
+          <span style="font-size:13px;font-weight:500;opacity:{{ h.labelOp }}">{{ h.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Clients -->
+<section id="clients" data-screen-label="02 Clients" style="border-bottom:1px solid rgba(11,16,53,0.08)">
+  <div style="max-width:1440px;margin:0 auto;padding:56px 32px;display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap">
+      <div style="font-size:18px;font-weight:600;letter-spacing:-0.01em">Trusted by organisations across the GCC and beyond</div>
+      <a href="#work" style="font-size:14px;font-weight:600;color:#0284C7">Read client stories →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px">
+      <sc-for list="{{ clientSlots }}" as="c" hint-placeholder-count="12">
+        <div style="background:#FFFFFF;height:96px;padding:18px;border:1px solid rgba(11,16,53,0.08);border-radius:12px">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ c.id }}" placeholder="Client logo" fit="contain" hint-size="100%,60px" style="width:100%;height:100%"></x-import>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- AI Automation -->
+<section id="ai" data-screen-label="02 AI Automation" style="max-width:1440px;margin:0 auto;padding:88px 32px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:48px;align-items:end;margin-bottom:40px">
+    <div>
+      <div style="font-weight:600;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#0284C7;margin-bottom:12px">01 — AI & Automation</div>
+      <h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;text-wrap:balance">Automate the work. <span style="color:#05A3E3">Keep the judgement.</span></h2>
+    </div>
+    <p style="margin:0;font-size:16px;line-height:1.6;color:#5B6478;max-width:520px">AI agents and workflows built on Claude and Lovable, connected to your ERP, CRM and documents, with people approving what matters.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+    <sc-for list="{{ aiPillars }}" as="a" hint-placeholder-count="4">
+      <a href="#" style="display:flex;flex-direction:column;gap:18px;color:#0B1035">
+        <div style="overflow:hidden;border-radius:12px;aspect-ratio:4/3"><img src="{{ a.img }}" alt="{{ a.name }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.04)"></img></div>
+        <div style="font-size:22px;font-weight:600;letter-spacing:-0.015em">{{ a.name }}</div>
+        <div style="font-size:15px;line-height:1.55;color:#5B6478;margin-top:-8px">{{ a.desc }}</div>
+        <div style="font-size:13px;color:#0284C7;font-weight:500">{{ a.tags }}</div>
+      </a>
+    </sc-for>
+  </div>
+
+  <div style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px">
+    <div style="background:#FFFFFF;border:1px solid rgba(11,16,53,0.1);border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <span style="font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(2,132,199,0.08);color:#0284C7">Claude automation practice</span>
+        <a href="#" style="font-size:14px;font-weight:600;color:#0284C7">Explore Claude automation →</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:22px;font-weight:600;letter-spacing:-0.015em;line-height:1.25">Agents that read, reason and act across your systems.</div>
+        <div style="font-size:15px;line-height:1.6;color:#5B6478">Claude-powered agents connected to AVA ERP, Zoho, Microsoft 365 and custom databases.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 20px;padding-top:18px;border-top:1px solid rgba(11,16,53,0.08)">
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>Enterprise AI agents</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>MCP connectors</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>Claude Code engineering</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>Arabic & English</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>Human approvals</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>Audit logs</div>
+      </div>
+    </div>
+    <div style="background:#FFFFFF;border:1px solid rgba(11,16,53,0.1);border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <span style="font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(2,132,199,0.08);color:#0284C7">Official Lovable partner</span>
+        <a href="#" style="font-size:14px;font-weight:600;color:#0284C7">Build with Lovable →</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:22px;font-weight:600;letter-spacing:-0.015em;line-height:1.25">From idea to working product in days.</div>
+        <div style="font-size:15px;line-height:1.6;color:#5B6478">Portals, internal tools and MVPs built on Lovable, then hardened for production.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 20px;padding-top:18px;border-top:1px solid rgba(11,16,53,0.08)">
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>Rapid MVPs</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>Customer portals</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>Internal tools</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>Supabase back ends</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>SSO & security</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#2A3150"><span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#0284C7;color:#FFFFFF;font-size:11px;display:grid;place-items:center">✓</span>System integrations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section id="products" data-screen-label="04 Products" style="background:#F4F7FA;padding:88px 0">
+  <div style="max-width:1440px;margin:0 auto;padding:0 32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:48px;align-items:end;margin-bottom:40px">
+      <div>
+        <div style="font-weight:600;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#0284C7;margin-bottom:12px">02 — Products</div>
+        <h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600">Software we build <span style="color:#05A3E3">and own.</span></h2>
+      </div>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#5B6478;max-width:520px">Ready-to-deploy platforms, configured to your business and supported by our team in Bahrain.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
+        <a href="#" style="background:#FFFFFF;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;color:#0B1035;border:1px solid rgba(11,16,53,0.06)">
+          <div style="aspect-ratio:16/10;overflow:hidden"><img src="{{ p.img }}" alt="{{ p.name }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.04)"></img></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:8px;flex:1">
+            <div style="font-size:12px;font-weight:600;color:#0284C7">{{ p.cat }}</div>
+            <div style="font-size:20px;font-weight:600;letter-spacing:-0.015em">{{ p.name }}</div>
+            <div style="font-size:15px;line-height:1.55;color:#5B6478;flex:1">{{ p.desc }}</div>
+            <div style="font-size:14px;font-weight:600;color:#0284C7;margin-top:8px">Learn more →</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Industries -->
+<section id="industries" data-screen-label="03 Industries" style="background:#F4F7FA;padding:88px 0">
+  <div style="max-width:1440px;margin:0 auto;padding:0 32px">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:40px">
+      <div>
+        <div style="font-weight:600;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#0284C7;margin-bottom:12px">03 — Industry experience</div>
+        <h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;max-width:900px">Deep domain knowledge, <span style="color:#05A3E3">across every sector.</span></h2>
+      </div>
+      <a href="#" style="font-size:15px;font-weight:600;padding:14px 22px;border:1px solid rgba(11,16,53,0.2);border-radius:999px">All industries →</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px">
+      <sc-for list="{{ featuredIndustries }}" as="f" hint-placeholder-count="3">
+        <a href="#" style="position:relative;height:420px;border-radius:14px;overflow:hidden;display:block;color:#FFFFFF">
+          <img src="{{ f.img }}" alt="{{ f.name }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.8s ease" style-hover="transform:scale(1.04)"></img>
+          <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(6,10,45,0) 35%,rgba(6,10,45,0.88) 100%)"></div>
+          <div style="position:absolute;left:28px;right:28px;bottom:28px;pointer-events:none;display:flex;flex-direction:column;gap:12px">
+            <div style="font-weight:600;font-size:11px;letter-spacing:0.1em;color:#05A3E3">{{ f.num }}</div>
+            <div style="font-size:24px;font-weight:600;letter-spacing:-0.015em;line-height:1.15">{{ f.name }}</div>
+            <div style="font-size:14px;line-height:1.5;color:#E3E8F2">{{ f.desc }}</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">
+              <sc-for list="{{ f.tags }}" as="tg" hint-placeholder-count="3">
+                <span style="font-size:12px;padding:5px 10px;background:rgba(255,255,255,0.16);border-radius:999px">{{ tg }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="max-width:1440px;margin:56px auto 20px;padding:0 32px;display:flex;justify-content:space-between;align-items:center;gap:16px">
+    <div style="font-size:15px;font-weight:600">More industries we serve</div>
+    <div style="font-size:13px;color:#5B6478">Hover to pause</div>
+  </div>
+  <div ref="{{ indRef }}" onMouseEnter="{{ pauseInd }}" onMouseLeave="{{ resumeInd }}" style="display:flex;gap:20px;overflow-x:auto;padding:0 32px 8px;scrollbar-width:none">
+    <sc-for list="{{ industryLoop }}" as="i" hint-placeholder-count="6">
+      <a href="#" style="flex:0 0 260px;display:flex;flex-direction:column;gap:14px;color:#0B1035">
+        <div style="height:280px;border-radius:12px;overflow:hidden"><img src="{{ i.img }}" alt="{{ i.name }}" style="width:100%;height:100%;object-fit:cover;display:block"></img></div>
+        <div style="display:flex;justify-content:space-between;gap:8px"><span style="font-size:17px;font-weight:600">{{ i.name }}</span><span style="color:#0284C7">→</span></div>
+        <div style="font-size:13px;line-height:1.5;color:#5B6478;margin-top:-6px">{{ i.desc }}</div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<!-- Immersive worlds -->
+<section id="immersive" data-screen-label="05 Immersive" style="padding:0 0 88px">
+  <div style="max-width:1440px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:48px">
+    <div>
+      <div style="font-weight:600;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#0284C7;margin-bottom:12px">04 — Immersive experiences</div>
+      <h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;max-width:900px">Real-time 3D for <span style="color:#05A3E3">every world.</span></h2>
+    </div>
+    <p style="margin:0;font-size:16px;line-height:1.6;color:#5B6478;max-width:440px">VR training, digital twins, interactive masterplans, virtual tours and AR for industry. Built with Unreal Engine, Unity, Three.js and WebXR.</p>
+  </div>
+  <div style="display:flex;gap:20px;overflow-x:auto;padding:0 32px 16px;scroll-snap-type:x mandatory">
+    <sc-for list="{{ worlds }}" as="w" hint-placeholder-count="5">
+      <div style="flex:0 0 300px;scroll-snap-align:start;display:flex;flex-direction:column;gap:16px">
+        <div style="position:relative;height:360px;border-radius:12px;overflow:hidden">
+          <img src="{{ w.img }}" alt="{{ w.name }}" style="width:100%;height:100%;object-fit:cover;display:block"></img>
+          <div style="position:absolute;top:16px;left:16px;font-size:11px;font-weight:600;letter-spacing:0.08em;padding:6px 11px;background:rgba(255,255,255,0.94);color:#0B1035;border-radius:999px">{{ w.tech }}</div>
+        </div>
+        <div style="font-size:21px;font-weight:600;letter-spacing:-0.015em">{{ w.name }}</div>
+        <div style="font-size:14px;line-height:1.5;color:#5B6478;margin-top:-6px">{{ w.desc }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- Case studies -->
+<section id="work" data-screen-label="06 Case studies" style="background:#F4F7FA;padding:88px 0">
+  <div style="max-width:1440px;margin:0 auto;padding:0 32px">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:40px">
+      <div>
+        <div style="font-weight:600;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#0284C7;margin-bottom:12px">05 — Case studies</div>
+        <h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600">Outcomes, <span style="color:#05A3E3">in production.</span></h2>
+      </div>
+      <a href="#" style="font-size:15px;font-weight:600;padding:14px 22px;border:1px solid rgba(11,16,53,0.2);border-radius:999px">All case studies →</a>
+    </div>
+
+    <a href="#" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));background:#0B1035;color:#FFFFFF;border-radius:14px;overflow:hidden;margin-bottom:24px">
+      <img src="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?auto=format&fit=crop&w=1600&q=80" alt="Factory floor" style="width:100%;height:100%;min-height:360px;object-fit:cover;display:block"></img>
+      <div style="padding:40px;display:flex;flex-direction:column;gap:20px;justify-content:center">
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:12px;padding:5px 10px;border:1px solid rgba(255,255,255,0.3);border-radius:999px">Manufacturing</span><span style="font-size:12px;padding:5px 10px;border:1px solid rgba(255,255,255,0.3);border-radius:999px">Enterprise ERP</span></div>
+        <div style="font-size:30px;font-weight:600;letter-spacing:-0.02em;line-height:1.15">Awal Plastics ERP</div>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:#C9D1E3">A fully customised, enterprise-grade ERP engineered to replace SAP and Oracle with a flexible and cost-efficient platform, covering HR, Finance, Procurement, Inventory, Job Cards, Production Planning, Asset Management and Advanced Reporting.</p>
+        <div style="font-size:15px;color:#05A3E3;font-weight:600">Read the case study →</div>
+      </div>
+    </a>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+      <sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+        <a href="#" style="display:flex;flex-direction:column;gap:14px;color:#0B1035;background:#FFFFFF;border-radius:16px;overflow:hidden">
+          <img src="{{ c.img }}" alt="{{ c.title }}" style="width:100%;height:260px;object-fit:cover;display:block"></img>
+          <div style="padding:6px 24px 28px;display:flex;flex-direction:column;gap:12px">
+            <div style="font-weight:600;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#0284C7">{{ c.tag }}</div>
+            <div style="font-size:21px;font-weight:600;letter-spacing:-0.015em;line-height:1.2">{{ c.title }}</div>
+            <div style="font-size:14px;line-height:1.55;color:#5B6478">{{ c.desc }}</div>
+            <div style="font-size:14px;font-weight:600;color:#0B1035;padding-top:12px;border-top:1px solid rgba(11,16,53,0.08)">{{ c.result }}</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio" data-screen-label="06 Selected work" style="max-width:1440px;margin:0 auto;padding:88px 32px">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:48px">
+    <div>
+      <div style="font-weight:600;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#0284C7;margin-bottom:12px">06 — Portfolio</div>
+      <h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600">Selected work</h2>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ portfolioFilters }}" as="p" hint-placeholder-count="5">
+        <button onClick="{{ p.onClick }}" style="border:1px solid {{ p.border }};background:{{ p.bg }};color:{{ p.fg }};padding:9px 16px;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer">{{ p.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:56px;align-items:start">
+    <div style="display:flex;flex-direction:column;border-top:1px solid rgba(11,16,53,0.12)">
+      <sc-for list="{{ portfolio }}" as="p" hint-placeholder-count="6">
+        <a href="#" onMouseEnter="{{ p.onEnter }}" style="display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(11,16,53,0.12);color:{{ p.fg }};transition:color 0.25s ease">
+          <span style="font-size:13px;font-weight:600;color:#7A8399">{{ p.num }}</span>
+          <span style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:clamp(18px,1.6vw,22px);font-weight:600;letter-spacing:-0.02em;line-height:1.15">{{ p.name }}</span>
+            <span style="font-size:13px;color:#5B6478">{{ p.client }}</span>
+          </span>
+          <span style="display:flex;gap:12px;align-items:center">
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:#F4F7FA;color:#2A3150">{{ p.cat }}</span>
+            <span style="font-size:18px;color:#0284C7;opacity:{{ p.arrow }};transition:opacity 0.25s ease">→</span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+    <div style="position:sticky;top:110px;display:flex;flex-direction:column;gap:20px">
+      <div style="position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:#F4F7FA">
+        <sc-for list="{{ portfolio }}" as="p" hint-placeholder-count="1">
+          <img src="{{ p.img }}" alt="{{ p.name }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ p.imgOp }};transform:scale({{ p.imgScale }});transition:opacity 0.6s ease,transform 1.2s ease"></img>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:22px;font-weight:600;letter-spacing:-0.015em">{{ pfActive.name }}</div>
+          <div style="font-size:15px;line-height:1.55;color:#5B6478">{{ pfActive.desc }}</div>
+        </div>
+        <a href="#" style="font-size:14px;font-weight:600;padding:12px 18px;border:1px solid rgba(11,16,53,0.2);border-radius:999px;white-space:nowrap">View project</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Awards -->
+<section id="awards" data-screen-label="08 Awards" style="background:#0B1035;color:#FFFFFF">
+  <div style="max-width:1440px;margin:0 auto;padding:88px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:64px">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-weight:600;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#05A3E3">07 — Awards & recognition</div>
+      <h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600">An award-winning technology company from <span style="color:#05A3E3">the Kingdom of Bahrain.</span></h2>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#C9D1E3;max-width:460px">Three consecutive Bahrain Tech Awards, regional recognition for AI, and a global ranking on Clutch.</p>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ awards }}" as="aw" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.12);align-items:baseline">
+          <span style="font-size:14px;font-weight:600;color:#05A3E3">{{ aw.year }}</span>
+          <div><div style="font-size:19px;font-weight:600;letter-spacing:-0.01em">{{ aw.title }}</div><div style="font-size:14px;color:#A9B3CC;margin-top:4px">{{ aw.by }}</div></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Partner strip -->
+<section style="border-bottom:1px solid rgba(11,16,53,0.08)">
+  <div style="max-width:1440px;margin:0 auto;padding:28px 32px;display:flex;gap:40px;align-items:center;flex-wrap:wrap;justify-content:space-between">
+    <div style="font-weight:600;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#5B6478">Technology partners</div>
+    <div style="display:flex;gap:44px;flex-wrap:wrap;align-items:center;font-size:19px;font-weight:600;letter-spacing:-0.01em;color:#2A3150">
+      <span style="display:flex;gap:8px;align-items:center">Lovable <span style="font-size:10px;color:#0284C7;border:1px solid #0284C7;border-radius:4px;padding:2px 5px">PARTNER</span></span>
+      <span style="display:flex;gap:8px;align-items:center">Claude by Anthropic <span style="font-size:10px;color:#0284C7;border:1px solid #0284C7;border-radius:4px;padding:2px 5px">AUTOMATION</span></span>
+      <span>Zoho</span><span>Microsoft Azure</span><span>AWS</span><span>Unreal Engine</span>
+    </div>
+  </div>
+</section>
+
+<!-- News, events & blog -->
+<section id="news" data-screen-label="09 News & blog" style="max-width:1440px;margin:0 auto;padding:88px 32px">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:48px">
+    <div>
+      <div style="font-weight:600;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#0284C7;margin-bottom:12px">08 — News & events</div>
+      <h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600">Latest from <span style="color:#05A3E3">Syskode.</span></h2>
+    </div>
+    <a href="#" style="font-size:15px;font-weight:600;padding:14px 22px;border:1px solid rgba(11,16,53,0.2);border-radius:999px">Newsroom →</a>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:48px;margin-bottom:64px">
+    <a href="#" style="display:flex;flex-direction:column;gap:18px;color:#0B1035">
+      <div style="position:relative;border-radius:14px;overflow:hidden;height:360px">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1600&q=80" alt="LEAP 2026" style="width:100%;height:100%;object-fit:cover;display:block"></img>
+        <div style="position:absolute;top:18px;left:18px;font-size:12px;font-weight:600;padding:7px 12px;background:#0284C7;color:#FFFFFF;border-radius:999px">Event · LEAP 2026, Riyadh</div>
+      </div>
+      <div style="font-size:24px;font-weight:600;letter-spacing:-0.015em;line-height:1.25">Syskode launches AVA ERP at LEAP 2026</div>
+      <div style="font-size:16px;line-height:1.6;color:#5B6478">Team Syskode opened LEAP 2026 with the official launch of AVA ERP, our AI-powered ERP platform, and welcomed H.E. Dr. Shaikh Abdullah bin Ahmed Al Khalifa, Minister of Transportation and Telecommunications, to the booth.</div>
+    </a>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ news }}" as="n" hint-placeholder-count="5">
+        <a href="#" style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:22px 0;border-bottom:1px solid rgba(11,16,53,0.1);color:#0B1035">
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">{{ n.date }}</span><span style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#0284C7">{{ n.tag }}</span></div>
+          <div style="font-size:17px;font-weight:600;line-height:1.35;letter-spacing:-0.01em">{{ n.title }}</div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:28px;flex-wrap:wrap">
+    <h3 style="margin:0;font-size:32px;font-weight:600;letter-spacing:-0.02em">From the blog</h3>
+    <a href="#" style="font-size:14px;font-weight:600;color:#0284C7">All articles →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+    <sc-for list="{{ blog }}" as="b" hint-placeholder-count="3">
+      <a href="#" style="display:flex;flex-direction:column;gap:14px;color:#0B1035">
+        <div style="border-radius:14px;overflow:hidden;height:240px"><img src="{{ b.img }}" alt="{{ b.title }}" style="width:100%;height:100%;object-fit:cover;display:block"></img></div>
+        <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#0284C7">{{ b.tag }} · {{ b.read }}</div>
+        <div style="font-size:20px;font-weight:600;letter-spacing:-0.015em;line-height:1.25">{{ b.title }}</div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<!-- Contact CTA -->
+<section id="contact" data-screen-label="12 Contact" style="position:relative;min-height:400px;display:flex;align-items:center;overflow:hidden;color:#FFFFFF">
+  <img src="https://images.unsplash.com/photo-1619941400844-ec5ef7495cb8?auto=format&fit=crop&w=2000&q=80" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></img>
+  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(6,10,45,0.85),rgba(6,10,45,0.4))"></div>
+  <div style="position:relative;max-width:1440px;width:100%;margin:0 auto;padding:72px 32px;display:flex;flex-direction:column;gap:24px">
+    <h2 style="margin:0;font-size:clamp(32px,3.6vw,48px);line-height:1.1;letter-spacing:-0.02em;font-weight:600;max-width:1000px">Let's build what's <span style="color:#05A3E3">next.</span></h2>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#" style="font-size:16px;font-weight:600;padding:14px 24px;background:#0284C7;color:#FFFFFF;border-radius:999px">Start a project</a>
+      <a href="#" style="font-size:16px;font-weight:500;padding:14px 24px;border:1px solid rgba(255,255,255,0.5);border-radius:999px;color:#FFFFFF">Book a free AI readiness audit</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer style="background:#F4F7FA;color:#0B1035">
+  <div style="max-width:1440px;margin:0 auto;padding:64px 32px 28px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;padding-bottom:56px;border-bottom:1px solid rgba(11,16,53,0.1)">
+      <div style="display:flex;flex-direction:column;gap:20px;max-width:460px">
+        <img src="assets/syskode-logo.png" alt="Syskode" style="height:72px;width:auto;align-self:flex-start;margin:-10px 0 -10px -30px;display:block"></img>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:#5B6478">An award-winning technology company from the Kingdom of Bahrain, building AI, automation, ERP and immersive experiences for clients worldwide.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <sc-for list="{{ socials }}" as="so" hint-placeholder-count="4">
+            <a href="#" style="font-size:13px;font-weight:600;padding:9px 14px;border:1px solid rgba(11,16,53,0.15);border-radius:999px;background:#FFFFFF">{{ so }}</a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font-size:22px;font-weight:600;letter-spacing:-0.015em">Get the Syskode briefing</div>
+        <div style="font-size:15px;color:#5B6478;line-height:1.5">AI, automation and industry news. One email a month.</div>
+        <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:15px;font-weight:600;color:#0284C7;padding:16px 0">Thanks, you're subscribed.</div>
+        </sc-if>
+        <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;background:#FFFFFF;border:1px solid rgba(11,16,53,0.1);border-radius:999px;padding:6px">
+            <input placeholder="Work email" style="flex:1;min-width:180px;border:0;background:transparent;padding:12px 16px;font-size:15px;color:#0B1035;outline:none"></input>
+            <button onClick="{{ subscribe }}" style="border:0;background:#0284C7;color:#FFFFFF;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer">Subscribe</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:40px;padding:56px 0">
+      <sc-for list="{{ footerCols }}" as="fc" hint-placeholder-count="6">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px">{{ fc.title }}</div>
+          <sc-for list="{{ fc.items }}" as="fi" hint-placeholder-count="5">
+            <a href="{{ fi.href }}" style="font-size:14px;color:#5B6478">{{ fi.label }}</a>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;padding-bottom:48px">
+      <sc-for list="{{ offices }}" as="o" hint-placeholder-count="3">
+        <div style="background:#FFFFFF;border-radius:14px;padding:22px 24px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#0284C7">{{ o.role }}</div>
+          <div style="font-size:18px;font-weight:600">{{ o.city }}</div>
+          <div style="font-size:14px;color:#5B6478">{{ o.country }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(11,16,53,0.1);font-size:13px;color:#7A8399">
+      <span>© 2026 Syskode Technologies W.L.L. · Kingdom of Bahrain</span>
+      <div style="display:flex;gap:20px;flex-wrap:wrap"><a href="Privacy.dc.html">Privacy</a><a href="Terms.dc.html">Terms</a><a href="Cookies.dc.html">Cookies</a><a href="Sitemap.dc.html">Sitemap</a></div>
+    </div>
+    <div style="margin-top:14px;font-size:11px;line-height:1.6;color:#9AA2B5">Photography via <a href="https://unsplash.com" style="text-decoration:underline">Unsplash</a>: {{ photoCredits }}.</div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;openMenuOnLoad&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const U = (id, w) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w || 1600}&q=80`;
+const P = {
+  vDisplay: ['1763256341193-a6e1b18a534d', 'Jim Luo'], airGlass: ['1779149473824-9f4be2e29ec5', 'Dynamic Hong Kong'], robots: ['1777383975764-bec6f5cabf00', 'Lilian Do Khac'],
+  matchNight: ['1762013315117-1c8005ad2b41', 'Eduard Delputte'], vrReach: ['1758526213714-a0743a6c101f', 'Vitaly Gariev'], teamScreen: ['1758873268695-1b55590e507a', 'Vitaly Gariev'],
+  peopleComp: ['1606857521015-7f9fcf423740', 'Israel Andrade'], macbook: ['1553877522-43269d4ea984', 'charlesdeluvio'], panel: ['1717386255773-a456c611dc4e', 'Homa Appliances'], groupLaptop: ['1522071820081-009f0129c71c', 'Annie Spratt'],
+  terminalBusy: ['1765971394562-403ebd8d1b7c', 'Rudityas W Anggoro'], factoryWalk: ['1787422429941-b1966d776195', 'PJ Wallace'], stadiumHigh: ['1489944440615-453fc2b6a9a9', 'Mario Klassen'],
+  planePark: ['1542296332-2e4473faf563', 'Rocker Sta'], warehouse: ['1782948603191-065fb15e2e8e', 'Sebastian Schuster'], electric: ['1758101755915-462eddc23f57', 'Toolmash Expo'], welding: ['1598302936625-6075fbd98dd7', 'Josh Beech'],
+  engineers: ['1581091212991-8891c7d4bd9b', 'ThisisEngineering'], textile: ['1610891015188-5369212db097', 'Lalit Kumar'], terminalCeiling: ['1770922893447-0af0f607c26b', 'Ayumi Takemura'], crowd: ['1599158150601-1417ebbaafdd', 'dominik hofbauer'],
+  boyVR: ['1576633587382-13ddf37b1fc1', 'Jessica Lewis'], meeting: ['1517048676732-d65bc937f952', 'Dylan Gillis'], yellowFactory: ['1547895749-888a559fc2a7', 'Victor'], bigMachine: ['1717386255773-1e3037c81788', 'Homa Appliances'], laptops: ['1603201667141-5a2d4c673378', 'Cherrydeck'],
+  runway: ['1683971336619-d445cbec0276', 'Niklas Jonasson'], engLaptop: ['1581091226825-a6a2a5aee158', 'ThisisEngineering'], aerialField: ['1556056504-5c7696c4c28d', 'Bence Balla-Schottner'], vrRoom: ['1758523670487-fe71f10c1080', 'Vitaly Gariev'],
+  fourVR: ['1538388149542-5e24932d11a8', 'Lucrezia Carnelos'], vrPlatform: ['1783095593983-7936ec02f205', 'Godfred Kwakye'], redVR: ['1639174326326-6e2ef8d8ae39', 'Sara Kurig'], vrPhone: ['1554474051-0256b98c36f8', 'stephan sorkin'],
+  terminalSign: ['1783768813434-21bca14a41db', 'Edwin Petrus'], fans: ['1629217855633-79a6925d6c47', 'Krzysztof Dubiel'], openOffice: ['1560264280-88b68371db39', 'Arlington Research'], vrMan: ['1593508512255-86ab42a8e620', 'Minh Pham'],
+  chairs: ['1568992687947-868a62a9f521', 'Redd Francisco'], walkAirport: ['1561101904-da649fcbf03f', 'Jue Huang'], tool: ['1504917595217-d4dc5ebe6122', 'Christopher Burns'], stadiumDay: ['1522778526097-ce0a22ceb253', 'Vienna Reyes'],
+  whitePlane: ['1569154941061-e231b4725ef1', 'Bao Menglong'], orangeMachines: ['1647427060118-4911c9821b82', 'Simon Kadula'], blueDevice: ['1626379961798-54f819ee896a', 'James Yarema'], factory: ['1496247749665-49cf5b1022e9', 'Ant Rozetsky'],
+  presenting: ['1542744173-8e7e53415bb0', 'Campaign Creators'], wrists: ['1600880292089-90a7e086ee0c', 'krakenimages'], dancing: ['1758691737487-29b4fae83e95', 'Vitaly Gariev'], celebrate: ['1758691737138-7b9b1884b1db', 'Vitaly Gariev'],
+  groupMeet: ['1541746972996-4e0b0f43e02a', 'Mario Gogh'], celebrate2: ['1758691737584-a8f17fb34475', 'Vitaly Gariev'], clouds: ['1619941400844-ec5ef7495cb8', 'willy wo'], teamLaptop: ['1758691737124-05c5bffe46f0', 'Vitaly Gariev'], doctorXray: ['1758691461957-13aff0c37c6f', 'Vitaly Gariev']
+};
+const img = (k, w) => U(P[k][0], w);
+
+class Component extends DCLogic {
+  state = { menu: null, region: 'Global', slide: 0, pf: 'All', pfHover: 0, partner: 0, submitted: false, subscribed: false };
+  indRef = React.createRef();
+  indPaused = false;
+
+  componentDidMount() {
+    if (this.props.openMenuOnLoad) this.setState({ menu: 'ai' });
+    this.heroTimer = setInterval(() => this.setState(s => ({ slide: (s.slide + 1) % 6 })), 6500);
+    const step = () => {
+      const el = this.indRef.current;
+      if (el && !this.indPaused) {
+        el.scrollLeft += 0.6;
+        if (el.scrollLeft >= el.scrollWidth / 2) el.scrollLeft -= el.scrollWidth / 2;
+      }
+      this.raf = requestAnimationFrame(step);
+    };
+    this.raf = requestAnimationFrame(step);
+  }
+  componentWillUnmount() { clearInterval(this.heroTimer); cancelAnimationFrame(this.raf); }
+
+  goSlide(i) {
+    clearInterval(this.heroTimer);
+    this.setState({ slide: i });
+    this.heroTimer = setInterval(() => this.setState(s => ({ slide: (s.slide + 1) % 6 })), 6500);
+  }
+
+  menus() {
+    return {
+      ai: { label: 'AI', title: 'AI & Automation', sub: 'Agents, copilots and end-to-end process automation powered by Claude, Lovable and leading AI platforms.', img: img('vDisplay', 800), featureTitle: 'Claude automation practice', featureText: 'Enterprise agents with MCP connectors into ERP, CRM and Microsoft 365.',
+        cols: [
+          { title: 'Agents & copilots', items: ['Claude enterprise agents', 'Customer service agents', 'Arabic/English voice agents', 'ERP & finance copilots', 'Sales & SDR agents', 'Multi-agent orchestration'] },
+          { title: 'Workflow automation', items: ['n8n / Make / Zapier orchestration', 'Document intelligence & OCR', 'Accounts payable automation', 'HR onboarding automation', 'Inbox & ticket triage', 'RPA modernisation'] },
+          { title: 'Applied AI', items: ['RAG knowledge assistants', 'Forecasting & demand planning', 'Computer vision QC', 'Predictive maintenance', 'Generative media & content', 'Model fine-tuning & MLOps'] },
+          { title: 'Build with AI', items: ['Lovable rapid app builds', 'Claude Code engineering', 'AI MVP in 14 days', 'AI readiness audit', 'AI governance & security', 'Prompt & eval engineering'] } ] },
+      services: { label: 'Services', title: 'Services', sub: 'Full-cycle digital engineering, from strategy and design to cloud operations.', img: img('groupLaptop', 800), featureTitle: 'Digital transformation', featureText: 'Strategy, architecture and delivery for enterprise modernisation.',
+        cols: [
+          { title: 'Engineering', items: ['Custom software', 'Web platforms', 'Mobile apps', 'E-commerce', 'API & integrations', 'Blockchain & Web3'] },
+          { title: 'Enterprise', items: ['ERP implementation', 'Zoho consulting', 'Data & BI', 'Cloud & DevOps', 'Cybersecurity', 'Tech consulting'] },
+          { title: 'Immersive', items: ['VR training simulations', 'Digital twins', 'Interactive 3D masterplans', 'Virtual property tours', 'AR industrial solutions', 'Metaverse experiences'] },
+          { title: 'Creative & growth', items: ['Brand identity', 'Motion graphics', 'Animated explainers', 'Digital marketing', 'Social media', 'Growth strategy'] } ] },
+      industries: { label: 'Industries', title: 'Industries', sub: 'Sector-specific solutions shaped by years of delivery across the GCC and beyond.', img: img('terminalBusy', 800), featureTitle: 'Airports & aviation', featureText: 'Operations twins, passenger flow analytics and AI-assisted ground handling.',
+        cols: [
+          { title: 'Mobility & infrastructure', items: ['Airports & aviation', 'Logistics & supply chain', 'Government & smart city', 'Energy & utilities'] },
+          { title: 'Industry', items: ['Manufacturing', 'Construction', 'Real estate', 'Oil & gas services'] },
+          { title: 'Experience', items: ['Sports technology', 'Hospitality & tourism', 'Retail & e-commerce', 'Events & exhibitions'] },
+          { title: 'Services', items: ['Banking & fintech', 'Healthcare', 'Education', 'Professional services'] } ] },
+      ava: { label: 'AVA ERP', title: 'AVA ERP', sub: 'AI-powered, cloud-ready ERP with GCC VAT and ZATCA Phase 2 e-invoicing.', img: img('teamLaptop', 800), featureTitle: 'Launched at LEAP 2026', featureText: 'Book a guided demo with our product team.',
+        cols: [
+          { title: 'Finance', items: ['Finance & accounting', 'Budgeting', 'GCC VAT', 'ZATCA e-invoicing'] },
+          { title: 'People & sales', items: ['HR & payroll', 'CRM & sales', 'Project management', 'IT ticketing'] },
+          { title: 'Operations', items: ['Procurement', 'Supply chain', 'Inventory & warehousing', 'Manufacturing'] },
+          { title: 'Intelligence', items: ['Asset maintenance', 'Business intelligence', 'AI forecasting', 'Document intelligence'] } ] },
+      tech: { label: 'Technology', title: 'Technologies', sub: 'The current-generation stack we design, build and operate on.', img: img('blueDevice', 800), featureTitle: 'Model Context Protocol', featureText: 'Secure connectors that let AI agents work inside your systems.',
+        cols: [
+          { title: 'AI & LLM', items: ['Claude (Anthropic)', 'Model Context Protocol', 'OpenAI & Gemini', 'Llama & Mistral', 'LangGraph & agent SDKs', 'pgvector & Pinecone'] },
+          { title: 'Build', items: ['Lovable', 'Next.js & React', 'React Native & Flutter', 'Node.js & Python', '.NET & Java', 'Supabase'] },
+          { title: 'Cloud & data', items: ['AWS', 'Microsoft Azure', 'Google Cloud', 'Kubernetes', 'Snowflake & Databricks', 'Power BI'] },
+          { title: 'Automation', items: ['n8n', 'Make', 'Zapier', 'Power Automate', 'Zoho Flow', 'UiPath'] },
+          { title: 'Immersive & 3D', items: ['Unreal Engine 5', 'Unity', 'Three.js & WebGL', 'WebXR', 'Apple Vision Pro', 'Gaussian splatting'] },
+          { title: 'IoT & edge', items: ['Industrial IoT', 'Edge AI', 'Digital twin platforms', 'Computer vision', 'BIM & GIS', 'Blockchain'] } ] },
+      work: { label: 'Work', title: 'Our work', sub: 'Portfolio and case studies from enterprise, government and experience projects.', img: img('factory', 800), featureTitle: 'Awal Plastics ERP', featureText: 'Custom ERP replacing SAP and Oracle across production and commercial workflows.',
+        cols: [
+          { title: 'Explore', items: ['Portfolio', 'Case studies', 'Client stories', 'Product demos'] },
+          { title: 'By capability', items: ['AI & automation', 'ERP', 'Immersive', 'Digital platforms'] },
+          { title: 'By industry', items: ['Aviation', 'Manufacturing', 'Sports', 'Real estate'] } ] },
+      partners: { label: 'Partners', title: 'Partners', sub: 'Technology alliances and a partner programme for resellers and integrators.', img: img('wrists', 800), featureTitle: 'Become a partner', featureText: 'Resell AVA ERP or co-deliver AI programmes in your market.',
+        cols: [
+          { title: 'Alliances', items: ['Lovable partner', 'Claude automation', 'Zoho', 'Cloud partners'] },
+          { title: 'Programme', items: ['Reseller', 'Implementation partner', 'Technology partner', 'Referral partner'] },
+          { title: 'Resources', items: ['Partner sign-up', 'Partner portal', 'Enablement', 'Co-marketing'] } ] },
+      company: { label: 'Company', title: 'Company', sub: 'An award-winning technology company headquartered in the Kingdom of Bahrain.', img: img('dancing', 800), featureTitle: 'We are hiring', featureText: 'Join engineers, designers and strategists building for the world.',
+        cols: [
+          { title: 'About', items: ['About Syskode', 'Leadership team', 'Awards & recognition', 'Global presence'] },
+          { title: 'People', items: ['Life at Syskode', 'Careers', 'Internships', 'Culture'] },
+          { title: 'Updates', items: ['News & events', 'Blog', 'Press', 'Contact'] } ] }
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const menus = this.menus();
+    const navItems = Object.keys(menus).map(k => ({ label: menus[k].label, onEnter: () => this.setState({ menu: k }),
+      bg: s.menu === k ? 'rgba(2,132,199,0.08)' : 'transparent', fg: s.menu === k ? '#0284C7' : '#0B1035' }));
+    const active = s.menu ? { key: s.menu, ...menus[s.menu] } : { cols: [] };
+    const regions = ['Global', 'GCC', 'KSA', 'العربية'].map(r => ({ label: r, onClick: () => this.setState({ region: r }),
+      bg: s.region === r ? '#0B1035' : 'transparent', fg: s.region === r ? '#FFFFFF' : '#5B6478' }));
+
+    const heroData = [
+      ['AI & Automation', 'AI agents that run the work.', 'Claude-powered automation for finance, operations and customer service.', 'Explore AI automation', '#ai', 'vDisplay'],
+      ['Airports', 'Smarter airports, gate to apron.', 'Operational twins, passenger flow analytics and AI ground handling.', 'See aviation solutions', '#industries', 'airGlass'],
+      ['Manufacturing', 'Factories that plan ahead.', 'AVA ERP, vision QC and predictive maintenance on one platform.', 'See manufacturing', '#industries', 'robots'],
+      ['Healthcare', 'Connected care, from clinic to ward.', 'Hospital management systems, patient portals and clinical AI that support care teams.', 'See healthcare solutions', '#industries', 'doctorXray'],
+      ['Sports technology', 'Technology fans can feel.', 'Stadium twins, performance data and immersive fan platforms.', 'See sports technology', '#industries', 'matchNight'],
+      ['Immersive', 'Worlds you can walk into.', 'VR training, digital twins and real-time 3D experiences.', 'Explore immersive', '#immersive', 'vrReach']
+    ];
+    const heroSlides = heroData.map((h, i) => {
+      const on = i === s.slide;
+      return { label: h[0], title: h[1], sub: h[2], cta: h[3], href: h[4], img: img(h[5], 2400),
+        opacity: on ? 1 : 0, scale: on ? 1.08 : 1, shift: on ? '0px' : '16px', pe: on ? 'auto' : 'none',
+        bar: on ? '100%' : (i < s.slide ? '100%' : '0%'), barT: on ? 'width 6.5s linear' : 'none', labelOp: on ? 1 : 0.6,
+        go: () => this.goSlide(i) };
+    });
+
+    const aiPillars = [
+      { name: 'AI agents', desc: 'Claude agents for service, sales and internal teams, in Arabic and English.', tags: 'Customer service · Voice · ERP copilots', img: img('peopleComp', 900) },
+      { name: 'Back-office automation', desc: 'Invoices, onboarding, procurement and reporting handled end to end.', tags: 'Document AI · AP · HR', img: img('macbook', 900) },
+      { name: 'Operational AI', desc: 'Forecasting, vision QC and predictive maintenance for physical operations.', tags: 'Forecasting · Vision · IoT', img: img('panel', 900) },
+      { name: 'Build with AI', desc: 'Lovable and Claude Code to ship portals, tools and MVPs in days.', tags: 'Lovable · Claude Code · MCP', img: img('groupLaptop', 900) }
+    ];
+
+    const featuredIndustries = [
+      { num: 'AVIATION', name: 'Airports & aviation', desc: 'Terminal digital twins, passenger flow analytics, AI ground handling and airside VR training.', tags: ['Digital twin', 'Flow analytics', 'VR training'], img: img('terminalBusy', 1200) },
+      { num: 'MANUFACTURING', name: 'Manufacturing', desc: 'AVA ERP for production, vision-based quality control, predictive maintenance and AR work instructions.', tags: ['AVA ERP', 'Vision QC', 'AR guides'], img: img('factoryWalk', 1200) },
+      { num: 'SPORTS TECHNOLOGY', name: 'Sports technology', desc: 'Performance analytics, fan engagement apps, stadium twins and immersive broadcast experiences.', tags: ['Performance data', 'Fan apps', 'Stadium twin'], img: img('stadiumHigh', 1200) }
+    ];
+    const ind = [
+      ['Airlines & MRO', 'Maintenance planning, crew apps and fleet analytics.', 'planePark'],
+      ['Logistics & supply chain', 'Warehouse automation, tracking and route optimisation.', 'warehouse'],
+      ['Energy & utilities', 'Asset twins, field AR and predictive maintenance.', 'electric'],
+      ['Construction', 'AI project controls, BIM integration and site twins.', 'welding'],
+      ['Automotive', 'Production planning, quality data and dealer platforms.', 'engineers'],
+      ['Textiles & FMCG', 'Batch tracking, inventory AI and demand planning.', 'textile'],
+      ['Real estate', 'Interactive masterplans, virtual tours and property management.', 'terminalCeiling'],
+      ['Venues & events', 'Ticketing, crowd analytics and fan engagement.', 'crowd'],
+      ['Education & training', 'VR classrooms, learning platforms and admissions automation.', 'boyVR'],
+      ['Professional services', 'Knowledge assistants, proposals and project delivery.', 'meeting'],
+      ['Heavy industry', 'Plant maintenance, safety training and asset data.', 'yellowFactory'],
+      ['Banking & fintech', 'Onboarding automation, document AI and compliance reporting.', 'laptops']
+    ].map(i => ({ name: i[0], desc: i[1], img: img(i[2], 700) }));
+    const industryLoop = [...ind, ...ind];
+
+    const worlds = [
+      ['Aviation worlds', 'Airside safety VR, terminal wayfinding twins and crew training.', 'VR · TWIN', 'runway'],
+      ['Industrial worlds', 'AR maintenance guides and live equipment data overlays.', 'AR', 'engLaptop'],
+      ['Sports worlds', 'Virtual stadiums, fan zones and interactive athlete data.', 'WEBXR', 'aerialField'],
+      ['Training worlds', 'Simulations for safety, emergency response and operations.', 'VR', 'vrRoom'],
+      ['Events & exhibitions', 'Virtual expo halls and hybrid launch experiences.', 'METAVERSE', 'fourVR'],
+      ['Heritage & culture', 'Digitised museums, archaeological sites and cultural archives.', 'SCAN · 3D', 'vrPlatform'],
+      ['Retail worlds', 'Virtual showrooms and 3D product configurators.', 'THREE.JS', 'redVR'],
+      ['Real estate worlds', 'Photoreal 3D masterplans and 360° property walkthroughs.', 'UNREAL', 'vrPhone']
+    ].map(w => ({ name: w[0], desc: w[1], tech: w[2], img: img(w[3], 900) }));
+
+    const cases = [
+      { tag: 'Aviation · Digital twin', title: 'Terminal operations twin', desc: 'A real-time 3D view of passenger flow, gates and assets for an airport operations centre.', result: 'Single live view across terminal operations', img: img('terminalSign', 1000) },
+      { tag: 'Finance · AI automation', title: 'Accounts payable on autopilot', desc: 'Claude-powered invoice capture and three-way matching, posting directly into AVA ERP with ZATCA-compliant output.', result: 'Invoices processed without manual keying', img: img('meeting', 1000) },
+      { tag: 'Sports · Fan experience', title: 'Immersive fan platform', desc: 'A WebXR fan zone with live stats, replays and sponsor activations for a regional sports club.', result: 'Fans engaged before, during and after matches', img: img('fans', 1000) }
+    ];
+
+    const pfAll = [
+      ['Awal Plastics ERP', 'ERP', 'Awal Plastics · Manufacturing', 'factory', 'Custom enterprise ERP replacing SAP and Oracle across HR, finance, production and inventory.'],
+      ['Airside VR training', 'Immersive', 'Aviation · Training', 'vrMan', 'Virtual reality safety training for ground crews working on the apron.'],
+      ['Arabic customer service agent', 'AI', 'Retail · Customer experience', 'chairs', 'A Claude-powered agent answering web and WhatsApp queries in Arabic and English.'],
+      ['Terminal wayfinding twin', 'Immersive', 'Aviation · Operations', 'walkAirport', 'A real-time 3D twin guiding passengers and operations teams through the terminal.'],
+      ['Smart factory dashboard', 'ERP', 'Manufacturing · Analytics', 'tool', 'Live production, downtime and quality data on one screen for plant managers.'],
+      ['Lovable partner portal', 'AI', 'Professional services · Portal', 'peopleComp', 'A partner portal designed and shipped in days with Lovable, then hardened for production.'],
+      ['Stadium digital twin', 'Immersive', 'Sports · Venue', 'stadiumDay', 'Interactive stadium model for event planning, sponsorship and fan experience.'],
+      ['Aviation operations app', 'Digital', 'Aviation · Mobile', 'whitePlane', 'A mobile app giving station teams turnaround status and task alerts.']
+    ];
+    const pfCats = ['All', 'AI', 'ERP', 'Immersive', 'Digital'];
+    const portfolioFilters = pfCats.map(c => ({ label: c, onClick: () => this.setState({ pf: c, pfHover: 0 }),
+      bg: s.pf === c ? '#0B1035' : 'transparent', fg: s.pf === c ? '#FFFFFF' : '#2A3150', border: s.pf === c ? '#0B1035' : 'rgba(11,16,53,0.18)' }));
+    const pfList = pfAll.filter(p => s.pf === 'All' || p[1] === s.pf);
+    const pfIdx = Math.min(s.pfHover, pfList.length - 1);
+    const portfolio = pfList.map((p, i) => ({ num: String(i + 1).padStart(2, '0'), name: p[0], cat: p[1], client: p[2], img: img(p[3], 1400), desc: p[4],
+      onEnter: () => this.setState({ pfHover: i }), fg: i === pfIdx ? '#0284C7' : '#0B1035', arrow: i === pfIdx ? 1 : 0,
+      imgOp: i === pfIdx ? 1 : 0, imgScale: i === pfIdx ? 1 : 1.06 }));
+    const pfActive = portfolio[pfIdx] || {};
+
+    const awards = [
+      { year: '2025', title: 'Asia Arab Award', by: 'Regional recognition' },
+      { year: '2020', title: 'IT Consultancy Firm of the Year – Bahrain', by: 'Corporate LiveWire Bahrain Prestige Awards 2020/21' },
+      { year: '2020', title: 'Best AI Software Solution Provider Bahrain', by: 'Global Banking & Finance Review' },
+      { year: '2019', title: 'Bahrain Tech Award', by: 'Tamkeen & Bahrain Technology Companies Society' },
+      { year: '2018', title: 'Bahrain Tech Award, second year in a row', by: 'Presented at GITEX Dubai' },
+      { year: '2017', title: 'Bahrain Tech Award, first edition', by: 'Tamkeen & BTECH, GITEX Dubai' }
+    ];
+
+    const news = [
+      { date: '2026', tag: 'Event', title: 'H.E. Minister of Transportation and Telecommunications visits the Syskode booth at LEAP 2026' },
+      { date: '2026', tag: 'Event', title: 'Syskode exhibits AVA ERP at LEAP Saudi Arabia' },
+      { date: '2025', tag: 'Award', title: 'Syskode receives the Asia Arab Award 2025' },
+      { date: '2020', tag: 'Award', title: 'Named IT Consultancy Firm of the Year – Bahrain' },
+      { date: '2018', tag: 'Partnership', title: 'Official technology partner for Bahrain Jazz Fest 2018' },
+      { date: '—', tag: 'Recognition', title: 'Named a global leader by Clutch' }
+    ];
+    const blog = [
+      { tag: 'ERP', read: '6 min read', title: 'ERP software in Bahrain and Saudi Arabia: what to look for', img: img('bigMachine', 900) },
+      { tag: 'AI', read: '5 min read', title: 'How AI-powered construction management software is changing projects', img: img('welding', 900) },
+      { tag: 'Immersive', read: '4 min read', title: 'AR/VR experiences in Bahrain: from concept to rollout', img: img('blueDevice', 900) }
+    ];
+
+    const ptList = [['Reseller', 'Sell AVA ERP in your market with margin and support.'], ['Implementation', 'Deliver AVA and AI projects with our certification.'], ['Technology', 'Integrate your product with AVA and our agents.'], ['Referral', 'Introduce clients and earn a referral fee.']];
+    const partnerTypes = ptList.map((p, i) => ({ name: p[0], desc: p[1], onClick: () => this.setState({ partner: i }),
+      border: s.partner === i ? '#0284C7' : 'rgba(11,16,53,0.25)', dot: s.partner === i ? '#0284C7' : 'transparent' }));
+
+    const roles = [
+      { title: 'AI Automation Engineer', team: 'AI & Automation', loc: 'Manama · Hybrid' },
+      { title: 'Senior Full-stack Developer', team: 'Engineering', loc: 'Manama · Hybrid' },
+      { title: 'Unreal Engine Developer', team: 'Immersive', loc: 'Remote' },
+      { title: 'ERP Functional Consultant', team: 'AVA ERP', loc: 'Riyadh' },
+      { title: 'Partner Manager, GCC', team: 'Partnerships', loc: 'Manama' }
+    ];
+    const pageLinks = { 'Partner sign-up': 'Partners.dc.html', 'Partner portal': 'Partners.dc.html', 'Reseller': 'Partners.dc.html', 'Implementation partner': 'Partners.dc.html', 'Technology partner': 'Partners.dc.html', 'Referral partner': 'Partners.dc.html', 'Careers': 'Careers.dc.html', 'Team': 'Careers.dc.html', 'Life at Syskode': 'Careers.dc.html', 'Internships': 'Careers.dc.html', 'Culture': 'Careers.dc.html', 'About': 'Syskode Website.dc.html' };
+    const products = [
+      ['AVA ERP', 'Enterprise resource planning', 'Finance, HR, inventory, production and GCC VAT e-invoicing in one AI-assisted system.', 'openOffice'],
+      ['AVA HR & Payroll', 'People operations', 'Payroll, leave, attendance and self-service for GCC labour rules.', 'teamScreen'],
+      ['Syskode VR Training', 'Immersive learning', 'Safety and skills training in virtual reality for aviation and industry.', 'vrMan'],
+      ['Syskode Twin', 'Digital twin platform', 'Real-time 3D models of terminals, venues and plants for operations teams.', 'walkAirport']
+    ].map(p => ({ name: p[0], cat: p[1], desc: p[2], img: img(p[3], 1000) }));
+    const clientSlots = Array.from({ length: 12 }, (_, i) => ({ id: 'client-logo-' + (i + 1) }));
+    const footerCols = [
+      { title: 'AI & Automation', items: ['Claude agents', 'Lovable builds', 'Workflow automation', 'Document AI', 'AI readiness audit'] },
+      { title: 'Services', items: ['Software', 'Mobile', 'Cloud & DevOps', 'Data & BI', 'Zoho consulting'] },
+      { title: 'Immersive', items: ['VR training', 'Digital twins', '3D masterplans', 'Virtual tours', 'AR industrial'] },
+      { title: 'Industries', items: ['Airports', 'Manufacturing', 'Sports tech', 'Real estate', 'Government'] },
+      { title: 'Products & work', items: ['AVA ERP', 'AVA HR & Payroll', 'Syskode VR Training', 'Portfolio', 'Case studies'] },
+      { title: 'Company', items: ['About', 'Team', 'Life at Syskode', 'Careers', 'News & blog', 'Partner sign-up', 'Contact'] }
+    ];
+    const offices = [{ role: 'Headquarters', city: 'Manama', country: 'Kingdom of Bahrain' }, { role: 'Regional office', city: 'Riyadh', country: 'Kingdom of Saudi Arabia' }, { role: 'Delivery', city: 'Global', country: 'Remote teams worldwide' }];
+    const photoCredits = [...new Set(Object.values(P).map(p => p[1]))].join(', ');
+
+    return {
+      regions, navItems, active, menuOpen: !!s.menu, closeMenu: () => this.setState({ menu: null }),
+      heroSlides, aiPillars, featuredIndustries, industryLoop, indRef: this.indRef,
+      pauseInd: () => { this.indPaused = true; }, resumeInd: () => { this.indPaused = false; },
+      worlds, cases, portfolioFilters, portfolio, pfActive, offices, socials: ['LinkedIn', 'Instagram', 'X', 'YouTube'],
+      subscribed: s.subscribed, notSubscribed: !s.subscribed, subscribe: () => this.setState({ subscribed: true }), awards, news, blog, partnerTypes,
+      selectedPartner: ptList[s.partner][0], submitted: s.submitted, notSubmitted: !s.submitted,
+      submitForm: () => this.setState({ submitted: true }), resetForm: () => this.setState({ submitted: false }),
+      roles, photoCredits, products, clientSlots,
+      footerCols: footerCols.map(c => ({ title: c.title, items: c.items.map(t => ({ label: t, href: pageLinks[t] || '#' })) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Company — Syskode</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#FFFFFF;color:#0B1035;font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#0284C7}
+input,select,textarea,button{font-family:inherit}
+</style>
+<link rel="stylesheet" href="brand-polish.css">
+<link rel="stylesheet" href="awards-gallery.css">
+</helmet>
+
+<div style="min-height:100vh;background:#FFFFFF;color:#0B1035">
+
+<!-- Nav + mega menu -->
+<header onMouseLeave="{{ closeMenu }}" style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,16,53,0.08)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:40px;min-height:80px">
+    <a href="Syskode Website.dc.html" style="display:flex;align-items:center"><img src="assets/syskode-logo.png" alt="Syskode" style="height:46px;width:auto;margin:-4px -18px -10px -20px;display:block"></img></a>
+    <nav style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="8">
+        <button onMouseEnter="{{ n.onEnter }}" onClick="{{ n.onEnter }}" style="background:{{ n.bg }};color:{{ n.fg }};border:0;padding:10px 12px;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;white-space:nowrap">{{ n.label }}</button>
+      </sc-for>
+    </nav>
+    <a href="#contact" style="font-size:14px;font-weight:600;padding:12px 22px;background:#0284C7;color:#FFFFFF;border-radius:999px;white-space:nowrap">Contact us</a>
+  </div>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;right:0;top:100%;background:#FFFFFF;border-bottom:1px solid rgba(11,16,53,0.1);box-shadow:0 30px 60px rgba(11,16,53,0.12)">
+      <div style="max-width:1440px;margin:0 auto;padding:36px 32px 40px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:48px">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px;gap:16px;flex-wrap:wrap">
+            <div style="font-size:30px;font-weight:600;letter-spacing:-0.02em">{{ active.title }}</div>
+            <div style="font-size:14px;color:#5B6478;max-width:440px">{{ active.sub }}</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px">
+            <sc-for list="{{ active.cols }}" as="col" hint-placeholder-count="4">
+              <div>
+                <div style="font-weight:600;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#0284C7;padding-bottom:12px;margin-bottom:8px;border-bottom:1px solid rgba(11,16,53,0.08)">{{ col.title }}</div>
+                <div style="display:flex;flex-direction:column">
+                  <sc-for list="{{ col.items }}" as="it" hint-placeholder-count="5">
+                    <a href="{{ it.href }}" class="{{ it.allianceClass }}" style="padding:7px 0;font-size:14px;color:#2A3150;display:flex;align-items:center;gap:12px"><sc-if value="{{ it.hasLogo }}" hint-placeholder-val="{{ false }}"><span class="alliance-menu-logos"><sc-for list="{{ it.logos }}" as="brand" hint-placeholder-count="1"><img src="{{ brand.src }}" alt="{{ brand.alt }}"></img></sc-for></span></sc-if><span>{{ it.label }}</span></a>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <img src="{{ active.img }}" alt="" style="width:100%;height:220px;object-fit:cover;border-radius:12px;display:block"></img>
+          <div style="font-size:18px;font-weight:600;letter-spacing:-0.01em">{{ active.featureTitle }}</div>
+          <div style="font-size:14px;color:#5B6478;line-height:1.5">{{ active.featureText }}</div>
+          <a href="{{ active.href }}" style="font-size:14px;color:#0284C7;font-weight:600">Explore →</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</header>
+<!-- Company hero -->
+<section id="top" data-screen-label="01 Hero" style="background:#0B1035;background-image:radial-gradient(circle at 88% 0%,rgba(5,163,227,0.24),transparent 50%);color:#FFFFFF">
+  <div style="max-width:1440px;margin:0 auto;padding:40px 32px 72px">
+    <nav aria-label="Breadcrumb" style="display:flex;gap:10px;flex-wrap:wrap;font-size:13px;color:#C9D1E3;margin-bottom:56px"><a href="Syskode Website.dc.html">Home</a><span aria-hidden="true">/</span><span aria-current="page" style="color:#FFFFFF">Company</span></nav>
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:920px">
+      
+      <h1 style="margin:0;font-size:clamp(38px,4.8vw,64px);line-height:1.06;letter-spacing:-0.03em;font-weight:600;text-wrap:balance">An award-winning technology company <span style="color:#05A3E3">from the Kingdom of Bahrain.</span></h1>
+      <p style="margin:0;font-size:18px;line-height:1.6;color:#E3E8F2;max-width:680px">Syskode Technologies builds AI, automation, ERP and immersive experiences for organisations across the GCC and beyond, from our headquarters in Manama and our office in Riyadh.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+        <a href="#contact" style="font-size:15px;font-weight:600;padding:13px 22px;background:#0284C7;color:#FFFFFF;border-radius:999px">Work with us</a>
+        <a href="Company.dc.html?s=contact" style="font-size:15px;font-weight:500;padding:13px 22px;border:1px solid rgba(255,255,255,0.5);border-radius:999px;color:#FFFFFF">Talk to an expert</a>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section id="svc-about-syskode" data-screen-label="02 About" style="background:#FFFFFF;scroll-margin-top:80px">
+  <div style="max-width:1440px;margin:0 auto;padding:96px 32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:end;margin-bottom:44px">
+      <div><h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;text-wrap:balance">Engineering tomorrow’s <span style="color:#0284C7">enterprise.</span></h2></div>
+      
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:48px">
+      <div style="flex:3 1 520px;min-width:0;display:flex;flex-direction:column;gap:18px;font-size:17px;line-height:1.7;color:#2A3150">
+        <p style="margin:0">Syskode Technologies W.L.L. is a technology company headquartered in Manama, Kingdom of Bahrain. We help organisations modernise how they work, from AI agents and process automation to enterprise software, ERP and immersive 3D experiences.</p>
+        <p style="margin:0">We are a Claude automation practice and an official Lovable partner, the team behind AVA ERP, and a three-time winner of the Bahrain Tech Award. Our clients range from government entities and national sports bodies to manufacturers, airports and fast-growing businesses.</p>
+        <p style="margin:0">Every project is designed, built and supported by our own teams, so the people who plan your system are the people who look after it.</p>
+      </div>
+      <div style="flex:2 1 320px;min-width:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-content:start">
+        <div style="background:#F4F7FA;border-radius:16px;padding:24px"><div style="font-size:40px;font-weight:600;letter-spacing:-0.03em">1120+</div><div style="font-size:14px;color:#5B6478;margin-top:6px">Projects delivered</div></div>
+        <div style="background:#F4F7FA;border-radius:16px;padding:24px"><div style="font-size:40px;font-weight:600;letter-spacing:-0.03em">226</div><div style="font-size:14px;color:#5B6478;margin-top:6px">Clients</div></div>
+        <div style="background:#F4F7FA;border-radius:16px;padding:24px"><div style="font-size:40px;font-weight:600;letter-spacing:-0.03em">3×</div><div style="font-size:14px;color:#5B6478;margin-top:6px">Bahrain Tech Award</div></div>
+        <div style="background:#F4F7FA;border-radius:16px;padding:24px"><div style="font-size:40px;font-weight:600;letter-spacing:-0.03em">2</div><div style="font-size:14px;color:#5B6478;margin-top:6px">Offices, Manama and Riyadh</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="svc-leadership-team" data-screen-label="03 Leadership" style="background:#F4F7FA;scroll-margin-top:80px">
+  <div style="max-width:1440px;margin:0 auto;padding:96px 32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:end;margin-bottom:44px">
+      <div><h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;text-wrap:balance">The people <span style="color:#0284C7">behind Syskode.</span></h2></div>
+      
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
+      <div style="border:1px dashed rgba(11,16,53,0.25);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px">
+        <span aria-hidden="true" style="width:72px;height:72px;border-radius:50%;background:#E6ECF3;display:grid;place-items:center;font-size:13px;font-weight:600;color:#5B6478">Photo</span>
+        <div><div style="font-size:20px;font-weight:600">[Full name]</div><div style="font-size:14px;color:#0369A1;font-weight:600;margin-top:4px">[Role]</div></div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#5B6478">[Two lines about their background and what they lead at Syskode.]</p>
+      </div><div style="border:1px dashed rgba(11,16,53,0.25);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px">
+        <span aria-hidden="true" style="width:72px;height:72px;border-radius:50%;background:#E6ECF3;display:grid;place-items:center;font-size:13px;font-weight:600;color:#5B6478">Photo</span>
+        <div><div style="font-size:20px;font-weight:600">[Full name]</div><div style="font-size:14px;color:#0369A1;font-weight:600;margin-top:4px">[Role]</div></div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#5B6478">[Two lines about their background and what they lead at Syskode.]</p>
+      </div><div style="border:1px dashed rgba(11,16,53,0.25);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px">
+        <span aria-hidden="true" style="width:72px;height:72px;border-radius:50%;background:#E6ECF3;display:grid;place-items:center;font-size:13px;font-weight:600;color:#5B6478">Photo</span>
+        <div><div style="font-size:20px;font-weight:600">[Full name]</div><div style="font-size:14px;color:#0369A1;font-weight:600;margin-top:4px">[Role]</div></div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#5B6478">[Two lines about their background and what they lead at Syskode.]</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="svc-awards-recognition" data-screen-label="04 Awards" style="background:#0B1035;scroll-margin-top:80px">
+  <div style="max-width:1440px;margin:0 auto;padding:96px 32px">
+<div style="color:#FFFFFF">    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:end;margin-bottom:44px">
+      <div><h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;text-wrap:balance">Recognised in Bahrain <span style="color:#05A3E3">and across the region.</span></h2></div>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#C9D1E3;max-width:520px">Three Bahrain Tech Awards in a row, plus international recognition for our AI and consulting work.</p>
+    </div>
+    
+    <div id="awards-gallery" class="awards-gallery-track" ref="{{ awardTrackRef }}" tabindex="0" role="region" aria-label="Awards gallery. Scroll horizontally to view all awards." onKeyDown="{{ onAwardKeyDown }}">
+      <sc-for list="{{ awardTimeline }}" as="t" hint-placeholder-count="5">
+        <div class="awards-gallery-card" tabindex="0">
+          <div class="awards-gallery-photo">
+            <sc-if value="{{ t.img }}" hint-placeholder-val="{{ true }}">
+              <img src="{{ t.img }}" alt="{{ t.title }}" class="awards-gallery-image"></img>
+            </sc-if>
+            <sc-if value="{{ t.noImg }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;border:1px solid rgba(255,255,255,0.12);border-radius:12px">
+                <span style="font-size:64px;font-weight:600;letter-spacing:-0.04em;line-height:1;color:#05A3E3">2</span>
+                <span style="font-size:14px;color:#C9D1E3;margin-top:8px">international awards</span>
+              </div>
+            </sc-if>
+          </div>
+          <div style="position:relative;height:1px;background:rgba(255,255,255,0.18);margin-top:6px"><span style="position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;background:#05A3E3"></span></div>
+          <span style="font-size:32px;font-weight:600;letter-spacing:-0.02em;color:#05A3E3;padding-top:4px">{{ t.year }}</span>
+          <sc-for list="{{ t.items }}" as="it" hint-placeholder-count="1">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div style="font-size:17px;font-weight:600;line-height:1.3">{{ it.title }}</div>
+              <div style="font-size:14px;line-height:1.5;color:#A9B3CC">{{ it.by }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+<div class="awards-gallery-toolbar"><p>Scroll to explore our awards and recognition.</p><div class="awards-gallery-actions"><button type="button" onClick="{{ previousAward }}" aria-controls="awards-gallery" aria-label="Previous awards">Previous</button><button type="button" onClick="{{ nextAward }}" aria-controls="awards-gallery" aria-label="Next awards">Next</button></div></div>
+</div>
+  </div>
+</section>
+<section id="svc-global-presence" data-screen-label="05 Global presence" style="background:#FFFFFF;scroll-margin-top:80px">
+  <div style="max-width:1440px;margin:0 auto;padding:96px 32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:end;margin-bottom:44px">
+      <div><h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;text-wrap:balance">Rooted in Bahrain, <span style="color:#0284C7">working worldwide.</span></h2></div>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#5B6478;max-width:520px">Our teams work across time zones to support clients in the GCC, Asia, Europe and beyond.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
+      <div style="background:#F4F7FA;border-radius:16px;padding:28px"><div style="font-size:12px;font-weight:600;color:#0369A1">Headquarters</div><div style="font-size:26px;font-weight:600;margin-top:10px">Manama</div><div style="font-size:15px;color:#5B6478;margin-top:4px">Kingdom of Bahrain</div><div style="font-size:14px;color:#2A3150;margin-top:16px;line-height:1.6">[Office address]</div></div>
+      <div style="background:#F4F7FA;border-radius:16px;padding:28px"><div style="font-size:12px;font-weight:600;color:#0369A1">Regional office</div><div style="font-size:26px;font-weight:600;margin-top:10px">Riyadh</div><div style="font-size:15px;color:#5B6478;margin-top:4px">Kingdom of Saudi Arabia</div><div style="font-size:14px;color:#2A3150;margin-top:16px;line-height:1.6">[Office address]</div></div>
+      <div style="background:#F4F7FA;border-radius:16px;padding:28px"><div style="font-size:12px;font-weight:600;color:#0369A1">Delivery</div><div style="font-size:26px;font-weight:600;margin-top:10px">Global</div><div style="font-size:15px;color:#5B6478;margin-top:4px">Remote teams worldwide</div><div style="font-size:14px;color:#2A3150;margin-top:16px;line-height:1.6">Development centres supporting clients across time zones.</div></div>
+    </div>
+  </div>
+</section>
+<section id="svc-life-at-syskode" data-screen-label="06 Careers" style="background:#0284C7;color:#FFFFFF;scroll-margin-top:80px">
+  <div style="max-width:1440px;margin:0 auto;padding:72px 32px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+    <div style="max-width:720px"><h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;text-wrap:balance">Join engineers, designers and strategists building for the world.</h2></div>
+    <a href="Careers.dc.html" style="font-size:15px;font-weight:600;padding:13px 22px;background:#FFFFFF;color:#0B1035;border-radius:999px">See careers and internships</a>
+  </div>
+</section>
+<section id="svc-news-events" data-screen-label="07 News" style="background:#F4F7FA;scroll-margin-top:80px">
+  <div style="max-width:1440px;margin:0 auto;padding:96px 32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:end;margin-bottom:44px">
+      <div><h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;text-wrap:balance">What’s new <span style="color:#0284C7">at Syskode.</span></h2></div>
+      
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:28px"><article style="display:flex;flex-direction:column;gap:14px"><div style="border-radius:14px;overflow:hidden;aspect-ratio:16/10;background:#E6ECF3"><img src="assets/news/leap-2026.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div><span style="font-size:12px;font-weight:600;color:#0369A1">Event · LEAP 2026, Riyadh</span><h3 style="margin:0;font-size:20px;font-weight:600;letter-spacing:-0.015em;line-height:1.3">Syskode launches AVA ERP at LEAP 2026</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#5B6478">Our AI-powered ERP platform launched on day one of LEAP 2026, with a visit from H.E. the Minister of Transportation and Telecommunications.</p></article><article style="display:flex;flex-direction:column;gap:14px"><div style="border-radius:14px;overflow:hidden;aspect-ratio:16/10;background:#E6ECF3"><img src="assets/news/epix-signing.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div><span style="font-size:12px;font-weight:600;color:#0369A1">Partnership · Epix Cinemas</span><h3 style="margin:0;font-size:20px;font-weight:600;letter-spacing:-0.015em;line-height:1.3">Bahrain’s first AI-powered WhatsApp chatbot for cinema</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#5B6478">Moviegoers can browse films, pick a show and book through WhatsApp, with no app and no queue.</p></article><article style="display:flex;flex-direction:column;gap:14px"><div style="border-radius:14px;overflow:hidden;aspect-ratio:16/10;background:#E6ECF3"><img src="assets/news/unido-visit.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div><span style="font-size:12px;font-weight:600;color:#0369A1">Visit · Manama</span><h3 style="margin:0;font-size:20px;font-weight:600;letter-spacing:-0.015em;line-height:1.3">UNIDO ITPO Bahrain delegation visits Syskode</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#5B6478">We welcomed Dr. Hashim S. Hussein, Head of UNIDO ITPO Bahrain, and the UNIDO delegation to our office.</p></article></div>
+    <ul style="list-style:none;margin:48px 0 0;padding:0"><li style="display:grid;grid-template-columns:72px 120px minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid rgba(11,16,53,0.1);font-size:15px"><span style="font-weight:600;color:#0369A1">2026</span><span style="color:#5B6478">Event</span><span style="font-weight:500">Syskode exhibits AVA ERP at LEAP Saudi Arabia</span></li><li style="display:grid;grid-template-columns:72px 120px minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid rgba(11,16,53,0.1);font-size:15px"><span style="font-weight:600;color:#0369A1">2025</span><span style="color:#5B6478">Award</span><span style="font-weight:500">Syskode receives the Asia Arab Award 2025</span></li><li style="display:grid;grid-template-columns:72px 120px minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid rgba(11,16,53,0.1);font-size:15px"><span style="font-weight:600;color:#0369A1">2020</span><span style="color:#5B6478">Award</span><span style="font-weight:500">Named IT Consultancy Firm of the Year – Bahrain</span></li><li style="display:grid;grid-template-columns:72px 120px minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid rgba(11,16,53,0.1);font-size:15px"><span style="font-weight:600;color:#0369A1">2018</span><span style="color:#5B6478">Partnership</span><span style="font-weight:500">Official technology partner for Bahrain Jazz Fest 2018</span></li><li style="display:grid;grid-template-columns:72px 120px minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid rgba(11,16,53,0.1);font-size:15px"><span style="font-weight:600;color:#0369A1">—</span><span style="color:#5B6478">Recognition</span><span style="font-weight:500">Named a global leader by Clutch</span></li></ul>
+  </div>
+</section>
+<section id="svc-blog" data-screen-label="08 Blog" style="background:#FFFFFF;scroll-margin-top:80px">
+  <div style="max-width:1440px;margin:0 auto;padding:96px 32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:end;margin-bottom:44px">
+      <div><h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;text-wrap:balance">Ideas and guides <span style="color:#0284C7">from our team.</span></h2></div>
+      
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px"><a href="#" style="background:#F4F7FA;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px;color:#0B1035"><span style="display:flex;justify-content:space-between;font-size:13px"><span style="font-weight:600;color:#0369A1">ERP</span><span style="color:#5B6478">6 min read</span></span><span style="font-size:20px;font-weight:600;line-height:1.3;letter-spacing:-0.015em">ERP software in Bahrain and Saudi Arabia: what to look for</span><span style="margin-top:auto;font-size:14px;font-weight:600;color:#0369A1">Read article →</span></a><a href="#" style="background:#F4F7FA;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px;color:#0B1035"><span style="display:flex;justify-content:space-between;font-size:13px"><span style="font-weight:600;color:#0369A1">AI</span><span style="color:#5B6478">5 min read</span></span><span style="font-size:20px;font-weight:600;line-height:1.3;letter-spacing:-0.015em">How AI-powered construction management software is changing projects</span><span style="margin-top:auto;font-size:14px;font-weight:600;color:#0369A1">Read article →</span></a><a href="#" style="background:#F4F7FA;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px;color:#0B1035"><span style="display:flex;justify-content:space-between;font-size:13px"><span style="font-weight:600;color:#0369A1">Immersive</span><span style="color:#5B6478">4 min read</span></span><span style="font-size:20px;font-weight:600;line-height:1.3;letter-spacing:-0.015em">AR/VR experiences in Bahrain: from concept to rollout</span><span style="margin-top:auto;font-size:14px;font-weight:600;color:#0369A1">Read article →</span></a></div>
+  </div>
+</section>
+<section id="svc-press" data-screen-label="09 Press" style="background:#F4F7FA;scroll-margin-top:80px">
+  <div style="max-width:1440px;margin:0 auto;padding:96px 32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:end;margin-bottom:44px">
+      <div><h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;text-wrap:balance">Media kit and <span style="color:#0284C7">press enquiries.</span></h2></div>
+      
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:20px">
+      <div style="flex:2 1 480px;min-width:0;background:#FFFFFF;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-size:12px;font-weight:600;color:#0369A1">About Syskode, for publication</div>
+        <p style="margin:0;font-size:16px;line-height:1.7;color:#2A3150">Syskode Technologies W.L.L. is an award-winning technology company headquartered in the Kingdom of Bahrain, with a regional office in Riyadh. The company builds AI agents and automation, enterprise software including AVA ERP, and immersive 3D and VR experiences for organisations across the GCC and beyond. Syskode is a three-time winner of the Bahrain Tech Award.</p>
+      </div>
+      <div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:16px">
+        <div style="background:#FFFFFF;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+          <img src="assets/syskode-logo.png" alt="Syskode logo" style="height:56px;width:auto;margin-left:-14px">
+          <a href="assets/syskode-logo.png" download="syskode-logo.png" style="font-size:14px;font-weight:600;padding:11px 18px;background:#0B1035;color:#FFFFFF;border-radius:999px">Download logo (PNG)</a>
+        </div>
+        <div style="background:#FFFFFF;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:12px;font-weight:600;color:#0369A1">Media contact</div>
+          <div style="font-size:16px;font-weight:600">[Name]</div>
+          <div style="font-size:15px;color:#5B6478">[press email] · [phone]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="svc-contact" data-screen-label="10 Contact" style="background:#FFFFFF;scroll-margin-top:80px">
+  <div style="max-width:1440px;margin:0 auto;padding:96px 32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:end;margin-bottom:44px">
+      <div><h2 style="margin:0;font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.02em;font-weight:600;text-wrap:balance">Tell us what <span style="color:#0284C7">you’re working on.</span></h2></div>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#5B6478;max-width:520px">We reply within one working day. For a free AI readiness audit, choose it from the list.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:32px">
+      <div style="flex:2 1 520px;min-width:0;background:#F4F7FA;border-radius:20px;padding:32px">
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="display:flex;flex-direction:column;gap:12px;padding:24px 0"><div style="font-size:24px;font-weight:600">Thank you, we’ve received your message.</div><div style="font-size:16px;color:#5B6478">Someone from our team will reply within one working day.</div><button type="button" onClick="{{ resetForm }}" style="align-self:flex-start;border:0;background:transparent;color:#0369A1;font-size:14px;font-weight:600;cursor:pointer;padding:0">Send another message</button></div>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ sendForm }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px">
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#0B1035">Full name<input required autocomplete="name" style="width:100%;border:1px solid rgba(11,16,53,0.18);border-radius:10px;padding:12px 14px;font-size:15px;color:#0B1035;background:#FFFFFF"></label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#0B1035">Company<input autocomplete="organization" style="width:100%;border:1px solid rgba(11,16,53,0.18);border-radius:10px;padding:12px 14px;font-size:15px;color:#0B1035;background:#FFFFFF"></label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#0B1035">Work email<input required type="email" autocomplete="email" style="width:100%;border:1px solid rgba(11,16,53,0.18);border-radius:10px;padding:12px 14px;font-size:15px;color:#0B1035;background:#FFFFFF"></label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#0B1035">Phone<input type="tel" autocomplete="tel" style="width:100%;border:1px solid rgba(11,16,53,0.18);border-radius:10px;padding:12px 14px;font-size:15px;color:#0B1035;background:#FFFFFF"></label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#0B1035;grid-column:1/-1">What can we help with?<select style="width:100%;border:1px solid rgba(11,16,53,0.18);border-radius:10px;padding:12px 14px;font-size:15px;color:#0B1035;background:#FFFFFF"><option>AI agents &amp; automation</option><option>Free AI readiness audit</option><option>AVA ERP demo</option><option>Custom software or app</option><option>Immersive, VR or 3D</option><option>Partnership</option><option>Something else</option></select></label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#0B1035;grid-column:1/-1">Message<textarea rows="5" style="width:100%;border:1px solid rgba(11,16,53,0.18);border-radius:10px;padding:12px 14px;font-size:15px;color:#0B1035;background:#FFFFFF;resize:vertical"></textarea></label>
+            <button type="submit" style="grid-column:1/-1;justify-self:start;border:0;background:#0369A1;color:#FFFFFF;padding:14px 26px;border-radius:999px;font-size:15px;font-weight:600;cursor:pointer">Send message</button>
+          </form>
+        </sc-if>
+      </div>
+      <div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:16px">
+        <div style="border:1px solid rgba(11,16,53,0.1);border-radius:16px;padding:24px"><div style="font-size:12px;font-weight:600;color:#0369A1">Email</div><div style="font-size:16px;font-weight:600;margin-top:6px">[hello@your-domain]</div></div>
+        <div style="border:1px solid rgba(11,16,53,0.1);border-radius:16px;padding:24px"><div style="font-size:12px;font-weight:600;color:#0369A1">Phone &amp; WhatsApp</div><div style="font-size:16px;font-weight:600;margin-top:6px">[+973 ...]</div></div>
+        <div style="border:1px solid rgba(11,16,53,0.1);border-radius:16px;padding:24px"><div style="font-size:12px;font-weight:600;color:#0369A1">Offices</div><div style="font-size:15px;line-height:1.7;margin-top:6px">Manama, Kingdom of Bahrain<br>Riyadh, Kingdom of Saudi Arabia</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Contact CTA -->
+<section id="contact" data-screen-label="12 Contact" style="position:relative;display:flex;align-items:center;background:#0B1035;color:#FFFFFF">
+  <div style="position:relative;max-width:1440px;width:100%;margin:0 auto;padding:72px 32px;display:flex;flex-direction:column;gap:24px">
+    <h2 style="margin:0;font-size:clamp(32px,3.6vw,48px);line-height:1.1;letter-spacing:-0.02em;font-weight:600;max-width:1000px">Let's build what's <span style="color:#05A3E3">next.</span></h2>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#" style="font-size:16px;font-weight:600;padding:14px 24px;background:#0284C7;color:#FFFFFF;border-radius:999px">Start a project</a>
+      <a href="#" style="font-size:16px;font-weight:500;padding:14px 24px;border:1px solid rgba(255,255,255,0.5);border-radius:999px;color:#FFFFFF">Book a free AI readiness audit</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer style="background:#F4F7FA;color:#0B1035">
+  <div style="max-width:1440px;margin:0 auto;padding:64px 32px 28px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;padding-bottom:56px;border-bottom:1px solid rgba(11,16,53,0.1)">
+      <div style="display:flex;flex-direction:column;gap:20px;max-width:460px">
+        <img src="assets/syskode-logo.png" alt="Syskode" style="height:72px;width:auto;align-self:flex-start;margin:-10px 0 -10px -30px;display:block"></img>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:#5B6478">An award-winning technology company from the Kingdom of Bahrain, building AI, automation, ERP and immersive experiences for clients worldwide.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <sc-for list="{{ socials }}" as="so" hint-placeholder-count="4">
+            <a href="#" style="font-size:13px;font-weight:600;padding:9px 14px;border:1px solid rgba(11,16,53,0.15);border-radius:999px;background:#FFFFFF">{{ so }}</a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font-size:22px;font-weight:600;letter-spacing:-0.015em">Get the Syskode briefing</div>
+        <div style="font-size:15px;color:#5B6478;line-height:1.5">AI, automation and industry news. One email a month.</div>
+        <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:15px;font-weight:600;color:#0284C7;padding:16px 0">Thanks, you're subscribed.</div>
+        </sc-if>
+        <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;background:#FFFFFF;border:1px solid rgba(11,16,53,0.1);border-radius:999px;padding:6px">
+            <input placeholder="Work email" style="flex:1;min-width:180px;border:0;background:transparent;padding:12px 16px;font-size:15px;color:#0B1035;outline:none"></input>
+            <button onClick="{{ subscribe }}" style="border:0;background:#0284C7;color:#FFFFFF;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer">Subscribe</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:40px;padding:56px 0">
+      <sc-for list="{{ footerCols }}" as="fc" hint-placeholder-count="6">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px">{{ fc.title }}</div>
+          <sc-for list="{{ fc.items }}" as="fi" hint-placeholder-count="5">
+            <a href="{{ fi.href }}" style="font-size:14px;color:#5B6478">{{ fi.label }}</a>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;padding-bottom:48px">
+      <sc-for list="{{ offices }}" as="o" hint-placeholder-count="3">
+        <div style="background:#FFFFFF;border-radius:14px;padding:22px 24px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#0284C7">{{ o.role }}</div>
+          <div style="font-size:18px;font-weight:600">{{ o.city }}</div>
+          <div style="font-size:14px;color:#5B6478">{{ o.country }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(11,16,53,0.1);font-size:13px;color:#7A8399">
+      <span>© 2026 Syskode Technologies W.L.L. · Kingdom of Bahrain</span>
+      <div style="display:flex;gap:20px;flex-wrap:wrap"><a href="Privacy.dc.html">Privacy</a><a href="Terms.dc.html">Terms</a><a href="Cookies.dc.html">Cookies</a><a href="Sitemap.dc.html">Sitemap</a></div>
+    </div>
+    <div style="margin-top:14px;font-size:11px;line-height:1.6;color:#9AA2B5">Photography via <a href="https://unsplash.com" style="text-decoration:underline">Unsplash</a>: {{ photoCredits }}.</div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;openMenuOnLoad&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const U = (id, w) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w || 1600}&q=80`;
+const P = {
+  vDisplay: ['1763256341193-a6e1b18a534d', 'Jim Luo'], airGlass: ['1779149473824-9f4be2e29ec5', 'Dynamic Hong Kong'], robots: ['1777383975764-bec6f5cabf00', 'Lilian Do Khac'],
+  matchNight: ['1762013315117-1c8005ad2b41', 'Eduard Delputte'], vrReach: ['1758526213714-a0743a6c101f', 'Vitaly Gariev'], teamScreen: ['1758873268695-1b55590e507a', 'Vitaly Gariev'],
+  peopleComp: ['1606857521015-7f9fcf423740', 'Israel Andrade'], macbook: ['1553877522-43269d4ea984', 'charlesdeluvio'], panel: ['1717386255773-a456c611dc4e', 'Homa Appliances'], groupLaptop: ['1522071820081-009f0129c71c', 'Annie Spratt'],
+  terminalBusy: ['1765971394562-403ebd8d1b7c', 'Rudityas W Anggoro'], factoryWalk: ['1787422429941-b1966d776195', 'PJ Wallace'], stadiumHigh: ['1489944440615-453fc2b6a9a9', 'Mario Klassen'],
+  planePark: ['1542296332-2e4473faf563', 'Rocker Sta'], warehouse: ['1782948603191-065fb15e2e8e', 'Sebastian Schuster'], electric: ['1758101755915-462eddc23f57', 'Toolmash Expo'], welding: ['1598302936625-6075fbd98dd7', 'Josh Beech'],
+  engineers: ['1581091212991-8891c7d4bd9b', 'ThisisEngineering'], textile: ['1610891015188-5369212db097', 'Lalit Kumar'], terminalCeiling: ['1770922893447-0af0f607c26b', 'Ayumi Takemura'], crowd: ['1599158150601-1417ebbaafdd', 'dominik hofbauer'],
+  boyVR: ['1576633587382-13ddf37b1fc1', 'Jessica Lewis'], meeting: ['1517048676732-d65bc937f952', 'Dylan Gillis'], yellowFactory: ['1547895749-888a559fc2a7', 'Victor'], bigMachine: ['1717386255773-1e3037c81788', 'Homa Appliances'], laptops: ['1603201667141-5a2d4c673378', 'Cherrydeck'],
+  runway: ['1683971336619-d445cbec0276', 'Niklas Jonasson'], engLaptop: ['1581091226825-a6a2a5aee158', 'ThisisEngineering'], aerialField: ['1556056504-5c7696c4c28d', 'Bence Balla-Schottner'], vrRoom: ['1758523670487-fe71f10c1080', 'Vitaly Gariev'],
+  fourVR: ['1538388149542-5e24932d11a8', 'Lucrezia Carnelos'], vrPlatform: ['1783095593983-7936ec02f205', 'Godfred Kwakye'], redVR: ['1639174326326-6e2ef8d8ae39', 'Sara Kurig'], vrPhone: ['1554474051-0256b98c36f8', 'stephan sorkin'],
+  terminalSign: ['1783768813434-21bca14a41db', 'Edwin Petrus'], fans: ['1629217855633-79a6925d6c47', 'Krzysztof Dubiel'], openOffice: ['1560264280-88b68371db39', 'Arlington Research'], vrMan: ['1593508512255-86ab42a8e620', 'Minh Pham'],
+  chairs: ['1568992687947-868a62a9f521', 'Redd Francisco'], walkAirport: ['1561101904-da649fcbf03f', 'Jue Huang'], tool: ['1504917595217-d4dc5ebe6122', 'Christopher Burns'], stadiumDay: ['1522778526097-ce0a22ceb253', 'Vienna Reyes'],
+  whitePlane: ['1569154941061-e231b4725ef1', 'Bao Menglong'], orangeMachines: ['1647427060118-4911c9821b82', 'Simon Kadula'], blueDevice: ['1626379961798-54f819ee896a', 'James Yarema'], factory: ['1496247749665-49cf5b1022e9', 'Ant Rozetsky'],
+  presenting: ['1542744173-8e7e53415bb0', 'Campaign Creators'], wrists: ['1600880292089-90a7e086ee0c', 'krakenimages'], dancing: ['1758691737487-29b4fae83e95', 'Vitaly Gariev'], celebrate: ['1758691737138-7b9b1884b1db', 'Vitaly Gariev'],
+  groupMeet: ['1541746972996-4e0b0f43e02a', 'Mario Gogh'], celebrate2: ['1758691737584-a8f17fb34475', 'Vitaly Gariev'], clouds: ['1619941400844-ec5ef7495cb8', 'willy wo'], teamLaptop: ['1758691737124-05c5bffe46f0', 'Vitaly Gariev'], doctorXray: ['1758691461957-13aff0c37c6f', 'Vitaly Gariev']
+};
+const img = (k, w) => U(P[k][0], w);
+// Site links: menu, footer and AI pages
+const NAV_LINKS = {"Claude enterprise agents": "AI Agents.dc.html?s=claude-enterprise-agents", "Customer service agents": "AI Agents.dc.html?s=customer-service-agents", "Arabic/English voice agents": "AI Agents.dc.html?s=arabic-english-voice-agents", "ERP & finance copilots": "AI Agents.dc.html?s=erp-finance-copilots", "Sales & SDR agents": "AI Agents.dc.html?s=sales-sdr-agents", "Multi-agent orchestration": "AI Agents.dc.html?s=multi-agent-orchestration", "n8n / Make / Zapier orchestration": "AI Workflow Automation.dc.html?s=n8n-make-zapier-orchestration", "Document intelligence & OCR": "AI Workflow Automation.dc.html?s=document-intelligence-ocr", "Accounts payable automation": "AI Workflow Automation.dc.html?s=accounts-payable-automation", "HR onboarding automation": "AI Workflow Automation.dc.html?s=hr-onboarding-automation", "Inbox & ticket triage": "AI Workflow Automation.dc.html?s=inbox-ticket-triage", "RPA modernisation": "AI Workflow Automation.dc.html?s=rpa-modernisation", "RAG knowledge assistants": "Applied AI.dc.html?s=rag-knowledge-assistants", "Forecasting & demand planning": "Applied AI.dc.html?s=forecasting-demand-planning", "Computer vision QC": "Applied AI.dc.html?s=computer-vision-qc", "Predictive maintenance": "Applied AI.dc.html?s=predictive-maintenance", "Generative media & content": "Applied AI.dc.html?s=generative-media-content", "Model fine-tuning & MLOps": "Applied AI.dc.html?s=model-fine-tuning-mlops", "Lovable rapid app builds": "Build with AI.dc.html?s=lovable-rapid-app-builds", "Claude Code engineering": "Build with AI.dc.html?s=claude-code-engineering", "AI MVP in 14 days": "Build with AI.dc.html?s=ai-mvp-in-14-days", "AI readiness audit": "Build with AI.dc.html?s=ai-readiness-audit", "AI governance & security": "Build with AI.dc.html?s=ai-governance-security", "Prompt & eval engineering": "Build with AI.dc.html?s=prompt-eval-engineering", "services:Custom software": "Services.dc.html?s=custom-software", "services:Web platforms": "Services.dc.html?s=web-platforms", "services:Mobile apps": "Services.dc.html?s=mobile-apps", "services:E-commerce": "Services.dc.html?s=e-commerce", "services:API & integrations": "Services.dc.html?s=api-integrations", "services:Blockchain & Web3": "Services.dc.html?s=blockchain-web3", "services:ERP implementation": "Services.dc.html?s=erp-implementation", "services:Zoho consulting": "Zoho.dc.html", "services:Data & BI": "Services.dc.html?s=data-bi", "services:Cloud & DevOps": "Services.dc.html?s=cloud-devops", "services:Cybersecurity": "Services.dc.html?s=cybersecurity", "services:Tech consulting": "Services.dc.html?s=tech-consulting", "services:VR training simulations": "Services.dc.html?s=vr-training-simulations", "services:Digital twins": "Services.dc.html?s=digital-twins", "services:Interactive 3D masterplans": "Services.dc.html?s=interactive-3d-masterplans", "services:Virtual property tours": "Services.dc.html?s=virtual-property-tours", "services:AR industrial solutions": "Services.dc.html?s=ar-industrial-solutions", "services:Metaverse experiences": "Services.dc.html?s=metaverse-experiences", "services:Brand identity": "Services.dc.html?s=brand-identity", "services:Motion graphics": "Services.dc.html?s=motion-graphics", "services:Animated explainers": "Services.dc.html?s=animated-explainers", "services:Digital marketing": "Services.dc.html?s=digital-marketing", "services:Social media": "Services.dc.html?s=social-media", "services:Growth strategy": "Services.dc.html?s=growth-strategy", "industries:Airports & aviation": "Industries.dc.html?s=airports-aviation", "industries:Logistics & supply chain": "Industries.dc.html?s=logistics-supply-chain", "industries:Government & smart city": "Industries.dc.html?s=government-smart-city", "industries:Energy & utilities": "Industries.dc.html?s=energy-utilities", "industries:Manufacturing": "Industries.dc.html?s=manufacturing", "industries:Construction": "Industries.dc.html?s=construction", "industries:Real estate": "Industries.dc.html?s=real-estate", "industries:Oil & gas services": "Industries.dc.html?s=oil-gas-services", "industries:Sports technology": "Industries.dc.html?s=sports-technology", "industries:Hospitality & tourism": "Industries.dc.html?s=hospitality-tourism", "industries:Retail & e-commerce": "Industries.dc.html?s=retail-e-commerce", "industries:Events & exhibitions": "Industries.dc.html?s=events-exhibitions", "industries:Banking & fintech": "Industries.dc.html?s=banking-fintech", "industries:Healthcare": "Industries.dc.html?s=healthcare", "industries:Education": "Industries.dc.html?s=education", "industries:Professional services": "Industries.dc.html?s=professional-services", "ava:Planning & Budgeting": "AVA ERP.dc.html?s=planning-budgeting", "ava:Estimation": "AVA ERP.dc.html?s=estimation", "ava:Project Management": "AVA ERP.dc.html?s=project-management", "ava:Finance": "AVA ERP.dc.html?s=finance", "ava:CRM & Sales": "AVA ERP.dc.html?s=crm-sales", "ava:E-Commerce & Digital Commerce": "AVA ERP.dc.html?s=e-commerce-digital-commerce", "ava:Procurement & Logistics": "AVA ERP.dc.html?s=procurement-logistics", "ava:Warehousing": "AVA ERP.dc.html?s=warehousing", "ava:Manufacturing & Production": "AVA ERP.dc.html?s=manufacturing-production", "ava:Asset Management & Maintenance": "AVA ERP.dc.html?s=asset-management-maintenance", "ava:Human Resource": "AVA ERP.dc.html?s=human-resource", "ava:IT Management": "AVA ERP.dc.html?s=it-management", "ava:Integrated Management System": "AVA ERP.dc.html?s=integrated-management-system", "ava:Business Intelligence & Analytics": "AVA ERP.dc.html?s=business-intelligence-analytics", "tech:Claude (Anthropic)": "Technology.dc.html?s=claude-anthropic", "tech:Model Context Protocol": "Technology.dc.html?s=model-context-protocol", "tech:OpenAI & Gemini": "Technology.dc.html?s=openai-gemini", "tech:Llama & Mistral": "Technology.dc.html?s=llama-mistral", "tech:LangGraph & agent SDKs": "Technology.dc.html?s=langgraph-agent-sdks", "tech:pgvector & Pinecone": "Technology.dc.html?s=pgvector-pinecone", "tech:Lovable": "Technology.dc.html?s=lovable", "tech:Next.js & React": "Technology.dc.html?s=next-js-react", "tech:React Native & Flutter": "Technology.dc.html?s=react-native-flutter", "tech:Node.js & Python": "Technology.dc.html?s=node-js-python", "tech:.NET & Java": "Technology.dc.html?s=net-java", "tech:Supabase": "Technology.dc.html?s=supabase", "tech:AWS": "Technology.dc.html?s=aws", "tech:Microsoft Azure": "Technology.dc.html?s=microsoft-azure", "tech:Google Cloud": "Technology.dc.html?s=google-cloud", "tech:Kubernetes": "Technology.dc.html?s=kubernetes", "tech:Snowflake & Databricks": "Technology.dc.html?s=snowflake-databricks", "tech:Power BI": "Technology.dc.html?s=power-bi", "tech:n8n": "Technology.dc.html?s=n8n", "tech:Make": "Technology.dc.html?s=make", "tech:Zapier": "Technology.dc.html?s=zapier", "tech:Power Automate": "Technology.dc.html?s=power-automate", "tech:Zoho Flow": "Technology.dc.html?s=zoho-flow", "tech:UiPath": "Technology.dc.html?s=uipath", "tech:Unreal Engine 5": "Technology.dc.html?s=unreal-engine-5", "tech:Unity": "Technology.dc.html?s=unity", "tech:Three.js & WebGL": "Technology.dc.html?s=three-js-webgl", "tech:WebXR": "Technology.dc.html?s=webxr", "tech:Apple Vision Pro": "Technology.dc.html?s=apple-vision-pro", "tech:Gaussian splatting": "Technology.dc.html?s=gaussian-splatting", "tech:Industrial IoT": "Technology.dc.html?s=industrial-iot", "tech:Edge AI": "Technology.dc.html?s=edge-ai", "tech:Digital twin platforms": "Technology.dc.html?s=digital-twin-platforms", "tech:Computer vision": "Technology.dc.html?s=computer-vision", "tech:BIM & GIS": "Technology.dc.html?s=bim-gis", "tech:Blockchain": "Technology.dc.html?s=blockchain", "Claude agents": "AI Agents.dc.html", "Lovable builds": "Build with AI.dc.html?s=lovable-rapid-app-builds", "Workflow automation": "AI Workflow Automation.dc.html", "Document AI": "AI Workflow Automation.dc.html?s=document-intelligence-ocr", "Software": "Services.dc.html?s=custom-software", "Mobile": "Services.dc.html?s=mobile-apps", "Cloud & DevOps": "Services.dc.html?s=cloud-devops", "Data & BI": "Services.dc.html?s=data-bi", "Zoho consulting": "Zoho.dc.html", "VR training": "Services.dc.html?s=vr-training-simulations", "Digital twins": "Services.dc.html?s=digital-twins", "3D masterplans": "Services.dc.html?s=interactive-3d-masterplans", "Virtual tours": "Services.dc.html?s=virtual-property-tours", "AR industrial": "Services.dc.html?s=ar-industrial-solutions", "Airports": "Industries.dc.html?s=airports-aviation", "Manufacturing": "Industries.dc.html?s=manufacturing", "Sports tech": "Industries.dc.html?s=sports-technology", "Real estate": "Industries.dc.html?s=real-estate", "Government": "Industries.dc.html?s=government-smart-city", "Airport SMS": "Products.dc.html?p=0", "Logistics & Fleet": "Products.dc.html?p=1", "Construction": "Products.dc.html?p=2", "Property management": "Products.dc.html?p=3", "Event management": "Products.dc.html?p=4", "HRMS": "Products.dc.html?p=5", "AVA ERP": "AVA ERP.dc.html", "PepUpSales": "Products.dc.html?p=7", "Portfolio": "Portfolio.dc.html", "Case studies": "Case Studies.dc.html", "About": "Company.dc.html?s=about-syskode", "Team": "Company.dc.html?s=leadership-team", "Life at Syskode": "Life at Syskode.dc.html", "Careers": "Careers.dc.html", "News & blog": "Company.dc.html?s=news-events", "Partner sign-up": "Partners.dc.html", "Contact": "Company.dc.html?s=contact", "work:Portfolio": "Portfolio.dc.html", "work:Case studies": "Case Studies.dc.html", "work:Client stories": "Client Stories.dc.html", "work:Product demos": "Product Demos.dc.html", "work:AI & automation": "AI.dc.html", "work:ERP": "AVA ERP.dc.html", "work:Immersive": "Services.dc.html?s=immersive", "work:Digital platforms": "Services.dc.html?s=engineering", "work:Aviation": "Industries.dc.html?s=airports-aviation", "work:Manufacturing": "Industries.dc.html?s=manufacturing", "work:Sports": "Industries.dc.html?s=sports-technology", "work:Real estate": "Industries.dc.html?s=real-estate", "partners:Lovable partner": "Build with AI.dc.html?s=lovable-rapid-app-builds", "partners:Claude automation": "AI Agents.dc.html", "partners:Zoho": "Zoho.dc.html", "partners:Cloud partners": "Technology.dc.html?s=cloud-data", "partners:Reseller": "Reseller Partner.dc.html", "partners:Implementation partner": "Implementation Partner.dc.html", "partners:Technology partner": "Technology Partner.dc.html", "partners:Referral partner": "Referral Partner.dc.html", "partners:Partner sign-up": "Partners.dc.html", "partners:Partner portal": "Partner Resources.dc.html?s=partner-portal", "partners:Enablement": "Partner Resources.dc.html?s=enablement", "partners:Co-marketing": "Partner Resources.dc.html?s=co-marketing", "company:About Syskode": "Company.dc.html?s=about-syskode", "company:Leadership team": "Company.dc.html?s=leadership-team", "company:Awards & recognition": "Company.dc.html?s=awards-recognition", "company:Global presence": "Company.dc.html?s=global-presence", "company:Life at Syskode": "Life at Syskode.dc.html", "company:Careers": "Careers.dc.html", "company:Internships": "Internships.dc.html", "company:Culture": "Life at Syskode.dc.html?s=culture", "company:News & events": "Company.dc.html?s=news-events", "company:Blog": "Company.dc.html?s=blog", "company:Press": "Company.dc.html?s=press", "company:Contact": "Company.dc.html?s=contact"};
+const MENU_HUBS = {"ai": "AI.dc.html", "services": "Services.dc.html", "industries": "Industries.dc.html", "ava": "AVA ERP.dc.html", "tech": "Technology.dc.html", "work": "Portfolio.dc.html", "partners": "Partners.dc.html", "company": "Company.dc.html"};
+
+const ALLIANCE_LOGOS = {
+  'Lovable partner': [{src:'assets/partners/lovable.svg',alt:'Lovable'}],
+  'Claude automation': [{src:'assets/partners/claude.svg',alt:'Claude by Anthropic'}],
+  'Zoho': [{src:'assets/partners/zoho.png',alt:'Zoho'}],
+  'Cloud partners': [{src:'assets/partners/microsoft.png',alt:'Microsoft'},{src:'assets/partners/google-cloud.png',alt:'Google Cloud'}]
+};
+class Component extends DCLogic {
+  awardTrackRef = React.createRef();
+  moveAward(direction) {
+    const track = this.awardTrackRef.current;
+    if (!track) return;
+    const card = track.firstElementChild;
+    const distance = card ? card.getBoundingClientRect().width + 32 : track.clientWidth;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    track.scrollBy({ left: direction * distance, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  onAwardKeyDown = e => {
+    const track = this.awardTrackRef.current;
+    if (!track) return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault(); this.moveAward(e.key === 'ArrowRight' ? 1 : -1);
+    } else if (e.key === 'Home' || e.key === 'End') {
+      e.preventDefault(); track.scrollTo({ left: e.key === 'Home' ? 0 : track.scrollWidth, behavior: 'auto' });
+    }
+  };
+
+  state = { menu: null, subscribed: false, sent: false };
+
+  componentDidMount() {
+    if (this.props.openMenuOnLoad) this.setState({ menu: 'ai' });
+    const sq = new URLSearchParams(location.search).get('s');
+    if (sq) setTimeout(() => { const el = document.getElementById('svc-' + sq); if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 90); }, 400);
+  }
+
+  menus() {
+    return {
+      ai: { label: 'AI', title: 'AI & Automation', sub: 'Agents, copilots and end-to-end process automation powered by Claude, Lovable and leading AI platforms.', img: img('vDisplay', 800), featureTitle: 'Claude automation practice', featureText: 'Enterprise agents with MCP connectors into ERP, CRM and Microsoft 365.',
+        cols: [
+          { title: 'Agents & copilots', items: ['Claude enterprise agents', 'Customer service agents', 'Arabic/English voice agents', 'ERP & finance copilots', 'Sales & SDR agents', 'Multi-agent orchestration'] },
+          { title: 'Workflow automation', items: ['n8n / Make / Zapier orchestration', 'Document intelligence & OCR', 'Accounts payable automation', 'HR onboarding automation', 'Inbox & ticket triage', 'RPA modernisation'] },
+          { title: 'Applied AI', items: ['RAG knowledge assistants', 'Forecasting & demand planning', 'Computer vision QC', 'Predictive maintenance', 'Generative media & content', 'Model fine-tuning & MLOps'] },
+          { title: 'Build with AI', items: ['Lovable rapid app builds', 'Claude Code engineering', 'AI MVP in 14 days', 'AI readiness audit', 'AI governance & security', 'Prompt & eval engineering'] } ] },
+      services: { label: 'Services', title: 'Services', sub: 'Full-cycle digital engineering, from strategy and design to cloud operations.', img: img('groupLaptop', 800), featureTitle: 'Digital transformation', featureText: 'Strategy, architecture and delivery for enterprise modernisation.',
+        cols: [
+          { title: 'Engineering', items: ['Custom software', 'Web platforms', 'Mobile apps', 'E-commerce', 'API & integrations', 'Blockchain & Web3'] },
+          { title: 'Enterprise', items: ['ERP implementation', 'Zoho consulting', 'Data & BI', 'Cloud & DevOps', 'Cybersecurity', 'Tech consulting'] },
+          { title: 'Immersive', items: ['VR training simulations', 'Digital twins', 'Interactive 3D masterplans', 'Virtual property tours', 'AR industrial solutions', 'Metaverse experiences'] },
+          { title: 'Creative & growth', items: ['Brand identity', 'Motion graphics', 'Animated explainers', 'Digital marketing', 'Social media', 'Growth strategy'] } ] },
+      industries: { label: 'Industries', title: 'Industries', sub: 'Sector-specific solutions shaped by years of delivery across the GCC and beyond.', img: img('terminalBusy', 800), featureTitle: 'Airports & aviation', featureText: 'Operations twins, passenger flow analytics and AI-assisted ground handling.',
+        cols: [
+          { title: 'Mobility & infrastructure', items: ['Airports & aviation', 'Logistics & supply chain', 'Government & smart city', 'Energy & utilities'] },
+          { title: 'Industry', items: ['Manufacturing', 'Construction', 'Real estate', 'Oil & gas services'] },
+          { title: 'Experience', items: ['Sports technology', 'Hospitality & tourism', 'Retail & e-commerce', 'Events & exhibitions'] },
+          { title: 'Services', items: ['Banking & fintech', 'Healthcare', 'Education', 'Professional services'] } ] },
+      ava: { label: 'AVA ERP', title: 'AVA ERP', sub: 'One intelligent ERP for every business function: customisable, AI-driven and cloud ready, with GCC VAT and ZATCA Phase 2.', img: img('teamLaptop', 800), featureTitle: 'Launched at LEAP 2026', featureText: 'Book a guided demo with our product team.',
+        cols: [
+          { title: 'Plan & control', items: ['Planning & Budgeting', 'Estimation', 'Project Management'] },
+          { title: 'Revenue & finance', items: ['Finance', 'CRM & Sales', 'E-Commerce & Digital Commerce'] },
+          { title: 'Supply & operations', items: ['Procurement & Logistics', 'Warehousing', 'Manufacturing & Production', 'Asset Management & Maintenance'] },
+          { title: 'People, systems & intelligence', items: ['Human Resource', 'IT Management', 'Integrated Management System', 'Business Intelligence & Analytics'] } ] },
+      tech: { label: 'Technology', title: 'Technologies', sub: 'The current-generation stack we design, build and operate on.', img: img('blueDevice', 800), featureTitle: 'Model Context Protocol', featureText: 'Secure connectors that let AI agents work inside your systems.',
+        cols: [
+          { title: 'AI & LLM', items: ['Claude (Anthropic)', 'Model Context Protocol', 'OpenAI & Gemini', 'Llama & Mistral', 'LangGraph & agent SDKs', 'pgvector & Pinecone'] },
+          { title: 'Build', items: ['Lovable', 'Next.js & React', 'React Native & Flutter', 'Node.js & Python', '.NET & Java', 'Supabase'] },
+          { title: 'Cloud & data', items: ['AWS', 'Microsoft Azure', 'Google Cloud', 'Kubernetes', 'Snowflake & Databricks', 'Power BI'] },
+          { title: 'Automation', items: ['n8n', 'Make', 'Zapier', 'Power Automate', 'Zoho Flow', 'UiPath'] },
+          { title: 'Immersive & 3D', items: ['Unreal Engine 5', 'Unity', 'Three.js & WebGL', 'WebXR', 'Apple Vision Pro', 'Gaussian splatting'] },
+          { title: 'IoT & edge', items: ['Industrial IoT', 'Edge AI', 'Digital twin platforms', 'Computer vision', 'BIM & GIS', 'Blockchain'] } ] },
+      work: { label: 'Work', title: 'Our work', sub: 'Portfolio and case studies from enterprise, government and experience projects.', img: img('factory', 800), featureTitle: (this.props.showClientNames ? 'Awal Plastics ERP' : 'Enterprise ERP for a plastics manufacturer'), featureText: 'A custom ERP replacing SAP and Oracle across HR, finance, production and inventory.',
+        cols: [
+          { title: 'Explore', items: ['Portfolio', 'Case studies', 'Client stories', 'Product demos'] },
+          { title: 'By capability', items: ['AI & automation', 'ERP', 'Immersive', 'Digital platforms'] },
+          { title: 'By industry', items: ['Aviation', 'Manufacturing', 'Sports', 'Real estate'] } ] },
+      partners: { label: 'Partners', title: 'Partners', sub: 'Technology alliances and a partner programme for resellers and integrators.', img: img('wrists', 800), featureTitle: 'Become a partner', featureText: 'Resell AVA ERP or co-deliver AI programmes in your market.',
+        cols: [
+          { title: 'Alliances', items: ['Lovable partner', 'Claude automation', 'Zoho', 'Cloud partners'] },
+          { title: 'Programme', items: ['Reseller', 'Implementation partner', 'Technology partner', 'Referral partner'] },
+          { title: 'Resources', items: ['Partner sign-up', 'Partner portal', 'Enablement', 'Co-marketing'] } ] },
+      company: { label: 'Company', title: 'Company', sub: 'An award-winning technology company headquartered in the Kingdom of Bahrain.', img: img('dancing', 800), featureTitle: 'We are hiring', featureText: 'Join engineers, designers and strategists building for the world.',
+        cols: [
+          { title: 'About', items: ['About Syskode', 'Leadership team', 'Awards & recognition', 'Global presence'] },
+          { title: 'People', items: ['Life at Syskode', 'Careers', 'Internships', 'Culture'] },
+          { title: 'Updates', items: ['News & events', 'Blog', 'Press', 'Contact'] } ] }
+    };
+  }
+
+  renderVals() {
+    const awardTimeline = [
+      { year: '2017', img: 'assets/awards/bta-2017.png', title: 'Bahrain Tech Award', items: [{ title: 'Bahrain Tech Award', by: 'First edition · Tamkeen & BTECH, GITEX Dubai' }] },
+      { year: '2018', img: 'assets/awards/bta-2018.png', title: 'Bahrain Tech Award', items: [{ title: 'Bahrain Tech Award', by: 'Second year in a row · GITEX Dubai' }] },
+      { year: '2019', img: 'assets/awards/bta-2019.png', title: 'Bahrain Tech Award', items: [{ title: 'Bahrain Tech Award', by: 'Tamkeen & Bahrain Technology Companies Society' }] },
+      { year: '2020', img: '', title: '2020 awards', items: [{ title: 'IT Consultancy Firm of the Year', by: 'Corporate LiveWire Bahrain Prestige Awards' }, { title: 'Best AI Software Solution Provider', by: 'Global Banking & Finance Review' }] },
+      { year: '2025', img: 'assets/awards/asia-arab-2025.png', title: 'Asia Arab Award', items: [{ title: 'Asia Arab Award', by: 'Regional recognition' }] }
+    ];
+    awardTimeline.forEach(t => { t.noImg = !t.img; });
+    const s = this.state;
+    const menus = this.menus();
+    const navItems = Object.keys(menus).map(k => ({ label: menus[k].label, onEnter: () => this.setState({ menu: k }),
+      bg: s.menu === k ? 'rgba(2,132,199,0.08)' : 'transparent', fg: s.menu === k ? '#0284C7' : '#0B1035' }));
+    const active = s.menu ? { key: s.menu, ...menus[s.menu], href: MENU_HUBS[s.menu] || '#', cols: menus[s.menu].cols.map(c => ({ title: c.title, items: c.items.map(t => ({ label: t, allianceClass: s.menu === 'partners' && c.title === 'Alliances' ? 'alliance-menu-link' : '', hasLogo: s.menu === 'partners' && c.title === 'Alliances', logos: s.menu === 'partners' && c.title === 'Alliances' ? (ALLIANCE_LOGOS[t] || []) : [], href: NAV_LINKS[s.menu + ':' + t] || NAV_LINKS[t] || '#' })) })) } : { cols: [] };
+    const pageLinks = {};
+    const sendForm = e => { e.preventDefault(); this.setState({ sent: true }); };
+    const footerCols = [
+      { title: 'AI & Automation', items: ['Claude agents', 'Lovable builds', 'Workflow automation', 'Document AI', 'AI readiness audit'] },
+      { title: 'Services', items: ['Software', 'Mobile', 'Cloud & DevOps', 'Data & BI', 'Zoho consulting'] },
+      { title: 'Immersive', items: ['VR training', 'Digital twins', '3D masterplans', 'Virtual tours', 'AR industrial'] },
+      { title: 'Industries', items: ['Airports', 'Manufacturing', 'Sports tech', 'Real estate', 'Government'] },
+      { title: 'Products & work', items: ['Airport SMS', 'Logistics & Fleet', 'Construction', 'Property management', 'Event management', 'HRMS', 'AVA ERP', 'PepUpSales', 'Portfolio', 'Case studies'] },
+      { title: 'Company', items: ['About', 'Team', 'Life at Syskode', 'Careers', 'News & blog', 'Partner sign-up', 'Contact'] }
+    ];
+    const offices = [{ role: 'Headquarters', city: 'Manama', country: 'Kingdom of Bahrain' }, { role: 'Regional office', city: 'Riyadh', country: 'Kingdom of Saudi Arabia' }, { role: 'Delivery', city: 'Global', country: 'Remote teams worldwide' }];
+    const photoCredits = [...new Set(Object.values(P).map(p => p[1]))].join(', ');
+    return {
+      awardTimeline, awardTrackRef: this.awardTrackRef, previousAward: () => this.moveAward(-1), nextAward: () => this.moveAward(1), onAwardKeyDown: this.onAwardKeyDown,
+      navItems, active, menuOpen: !!s.menu, closeMenu: () => this.setState({ menu: null }),
+      offices, socials: ['LinkedIn', 'Instagram', 'X', 'YouTube'], photoCredits,
+      subscribed: s.subscribed, notSubscribed: !s.subscribed, subscribe: () => this.setState({ subscribed: true }),
+      footerCols: footerCols.map(c => ({ title: c.title, items: c.items.map(t => ({ label: t, href: NAV_LINKS[t] || pageLinks[t] || '#' })) })),
+      sent: s.sent, notSent: !s.sent, sendForm, resetForm: () => this.setState({ sent: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
